@@ -14,6 +14,7 @@
 		E8FDE10B2C7797A000128E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */; };
 		E8FDE12D2C7A1A8200128E2A /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE12C2C7A1A8200128E2A /* FavoriteView.swift */; };
 		E8FDE12F2C7A1A9800128E2A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE12E2C7A1A9800128E2A /* MainView.swift */; };
+		E8FDE1312C7A214D00128E2A /* MoviesTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1302C7A214D00128E2A /* MoviesTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8FDE12C2C7A1A8200128E2A /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		E8FDE12E2C7A1A9800128E2A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E8FDE1302C7A214D00128E2A /* MoviesTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */,
 				E8FDE12C2C7A1A8200128E2A /* FavoriteView.swift */,
 				E8FDE12E2C7A1A9800128E2A /* MainView.swift */,
+				E8FDE1302C7A214D00128E2A /* MoviesTabBar.swift */,
 			);
 			path = "Peek-swiftUI";
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			files = (
 				E8FDE0FE2C7783D800128E2A /* ContentView.swift in Sources */,
 				E8FDE12F2C7A1A9800128E2A /* MainView.swift in Sources */,
+				E8FDE1312C7A214D00128E2A /* MoviesTabBar.swift in Sources */,
 				E8FDE12D2C7A1A8200128E2A /* FavoriteView.swift in Sources */,
 				E8FDE0FC2C7783D800128E2A /* Peek_swiftUIApp.swift in Sources */,
 			);
