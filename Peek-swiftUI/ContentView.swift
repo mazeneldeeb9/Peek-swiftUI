@@ -1,24 +1,19 @@
-//
-//  ContentView.swift
-//  Peek-swiftUI
-//
-//  Created by mazen eldeeb on 22/08/2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            MainView()
+                .tabItem { Label("Home", systemImage: "house.fill") }
+            FavoriteView()
+                .tabItem { Label("Home", systemImage: "heart.fill") }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
 }
+
+
+
