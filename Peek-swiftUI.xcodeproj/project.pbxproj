@@ -16,6 +16,8 @@
 		E8FDE12F2C7A1A9800128E2A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE12E2C7A1A9800128E2A /* MainView.swift */; };
 		E8FDE1312C7A214D00128E2A /* MoviesTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1302C7A214D00128E2A /* MoviesTabBar.swift */; };
 		E8FDE1342C7A3A3200128E2A /* WelcomeBackTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1332C7A3A3200128E2A /* WelcomeBackTopView.swift */; };
+		E8FDE1382C7A4AC900128E2A /* TextField+RemoveFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1372C7A4AC900128E2A /* TextField+RemoveFocus.swift */; };
+		E8FDE13A2C7A4B4600128E2A /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1392C7A4B4600128E2A /* SearchTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		E8FDE12E2C7A1A9800128E2A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E8FDE1302C7A214D00128E2A /* MoviesTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTabBar.swift; sourceTree = "<group>"; };
 		E8FDE1332C7A3A3200128E2A /* WelcomeBackTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeBackTopView.swift; sourceTree = "<group>"; };
+		E8FDE1372C7A4AC900128E2A /* TextField+RemoveFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+RemoveFocus.swift"; sourceTree = "<group>"; };
+		E8FDE1392C7A4B4600128E2A /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +90,10 @@
 		E8FDE1322C7A3A1B00128E2A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				E8FDE12E2C7A1A9800128E2A /* MainView.swift */,
 				E8FDE1332C7A3A3200128E2A /* WelcomeBackTopView.swift */,
+				E8FDE12E2C7A1A9800128E2A /* MainView.swift */,
+				E8FDE1372C7A4AC900128E2A /* TextField+RemoveFocus.swift */,
+				E8FDE1392C7A4B4600128E2A /* SearchTextField.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -164,11 +170,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8FDE0FE2C7783D800128E2A /* ContentView.swift in Sources */,
+				E8FDE1382C7A4AC900128E2A /* TextField+RemoveFocus.swift in Sources */,
 				E8FDE12F2C7A1A9800128E2A /* MainView.swift in Sources */,
 				E8FDE1312C7A214D00128E2A /* MoviesTabBar.swift in Sources */,
 				E8FDE12D2C7A1A8200128E2A /* FavoriteView.swift in Sources */,
 				E8FDE1342C7A3A3200128E2A /* WelcomeBackTopView.swift in Sources */,
 				E8FDE0FC2C7783D800128E2A /* Peek_swiftUIApp.swift in Sources */,
+				E8FDE13A2C7A4B4600128E2A /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,6 @@ struct WelcomeBackTopView: View {
                     .foregroundStyle(.white)
             }.padding(.leading, 5)
             Spacer()
-        }).padding()
+        })
     }
 }

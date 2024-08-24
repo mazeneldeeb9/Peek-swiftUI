@@ -13,10 +13,14 @@ struct MainView: View {
             Color.mainPurple.ignoresSafeArea()
             VStack(alignment: .leading, content: {
                 WelcomeBackTopView()
+                SearchTextField()
+                
+                
+                
                 
                 Spacer()
-            })
-        }
+            }).padding()
+        }.removeFocusOnTap()
     }
 }
 
