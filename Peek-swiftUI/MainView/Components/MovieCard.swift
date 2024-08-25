@@ -8,25 +8,32 @@
 import SwiftUI
 
 struct MovieCard: View {
+    let movie: Movie
+    
+    
     @State private var isFavorited = false
     
     let url = URL(string: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg")
     var body: some View {
+        
         ZStack {
-            AsyncImage(url: url) { image in
+            AsyncImage(url: URL(string: movie.posterPath!)) { image in
                 image
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 300, height: 240)
+                    .frame(width: Constants.movieCardWidth, height: Constants.movieCardheight)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }  placeholder: {
-                ProgressView()
+                VStack {
+                    ProgressView()
+                    Spacer()
+                }
             }
             VStack {
                 Spacer()
                 VStack {
                     HStack {
-                        Text("Astra")
+                        Text(movie.title!)
                             .foregroundStyle(.white)
                             .fontWeight(.heavy)
                             .font(.title)
@@ -44,7 +51,7 @@ struct MovieCard: View {
                         Image(systemName: "hand.thumbsup.fill")
                             .foregroundStyle(.lightYellow)
                             .bold()
-                        Text("9.1")
+                        Text(movie.getVoteAverage())
                             .foregroundStyle(.lightYellow)
                             .bold()
                         Spacer()
@@ -68,10 +75,14 @@ struct MovieCard: View {
             }
             
             
-        }.frame(width: 300, height: 240)
+        }.frame(width: Constants.movieCardWidth, height: Constants.movieCardheight)
     }
 }
 
-#Preview {
-    MovieCard()
+struct MovieCard_Previews: PreviewProvider {
+    static var previews: some View {
+        let movie = Movie(title: "Ad Astra", id: 3, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)
+
+        MovieCard(movie: movie)
+    }
 }
