@@ -8,16 +8,11 @@
 import SwiftUI
 
 struct CategoryListView: View {
-    let movies: [Movie] = [
-        Movie(title: "Ad Astra", id: 1, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-        Movie(title: "Ad Astra", id: 2, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-        Movie(title: "Ad Astra", id: 3, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-        
-    ]
+    let category: MoviesResponse
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text("Now Playing")
+                Text(category.categoryTitle)
                     .bold()
                     .font(.title)
                     .foregroundStyle(.white)
@@ -26,18 +21,24 @@ struct CategoryListView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    ForEach(movies, id: \.id) { movie in
+                    ForEach(category.results, id: \.id) { movie in
                         MovieCard(movie: movie)
                         
                     }
                     .listStyle(.plain)
                 }
-            }.frame(height: Constants.movieCardheight)
-        }
+            }.frame(width: .infinity, height: Constants.movieCardheight, alignment: .leading)
+        }.background(.mainPurple)
+            .ignoresSafeArea()
     }
     
 }
 
-#Preview {
-    CategoryListView()
+
+
+struct CategoryListView_Previews: PreviewProvider {
+    static var previews: some View {
+        let movieResponse: MoviesResponse = MoviesResponse(categoryTitle: "Now Playing", results: [Movie(title: "Ad Astra", id: 1, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)])
+        CategoryListView(category: movieResponse)
+    }
 }
