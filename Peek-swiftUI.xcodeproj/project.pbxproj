@@ -23,6 +23,7 @@
 		E8FDE1452C7B133200128E2A /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1442C7B133200128E2A /* Genre.swift */; };
 		E8FDE1472C7B139B00128E2A /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1462C7B139B00128E2A /* CategoryListView.swift */; };
 		E8FDE1492C7B1A5C00128E2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1482C7B1A5C00128E2A /* Constants.swift */; };
+		E8FDE14B2C7B1C7F00128E2A /* MoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE14A2C7B1C7F00128E2A /* MoviesResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		E8FDE1442C7B133200128E2A /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		E8FDE1462C7B139B00128E2A /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		E8FDE1482C7B1A5C00128E2A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E8FDE14A2C7B1C7F00128E2A /* MoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 			children = (
 				E8FDE1422C7B12AE00128E2A /* Movie.swift */,
 				E8FDE1442C7B133200128E2A /* Genre.swift */,
+				E8FDE14A2C7B1C7F00128E2A /* MoviesResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				E8FDE0FE2C7783D800128E2A /* ContentView.swift in Sources */,
 				E8FDE1382C7A4AC900128E2A /* TextField+RemoveFocus.swift in Sources */,
 				E8FDE12F2C7A1A9800128E2A /* MainView.swift in Sources */,
+				E8FDE14B2C7B1C7F00128E2A /* MoviesResponse.swift in Sources */,
 				E8FDE1452C7B133200128E2A /* Genre.swift in Sources */,
 				E8FDE1312C7A214D00128E2A /* MoviesTabBar.swift in Sources */,
 				E8FDE1432C7B12AE00128E2A /* Movie.swift in Sources */,
