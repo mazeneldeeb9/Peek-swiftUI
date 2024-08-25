@@ -18,6 +18,7 @@ struct MainView: View {
                 
                 
                 
+                
                 Spacer()
             }).padding()
         }.removeFocusOnTap()

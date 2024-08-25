@@ -18,6 +18,7 @@
 		E8FDE1342C7A3A3200128E2A /* WelcomeBackTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1332C7A3A3200128E2A /* WelcomeBackTopView.swift */; };
 		E8FDE1382C7A4AC900128E2A /* TextField+RemoveFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1372C7A4AC900128E2A /* TextField+RemoveFocus.swift */; };
 		E8FDE13A2C7A4B4600128E2A /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1392C7A4B4600128E2A /* SearchTextField.swift */; };
+		E8FDE13C2C7A4C6200128E2A /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE13B2C7A4C6200128E2A /* MovieCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E8FDE1332C7A3A3200128E2A /* WelcomeBackTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeBackTopView.swift; sourceTree = "<group>"; };
 		E8FDE1372C7A4AC900128E2A /* TextField+RemoveFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+RemoveFocus.swift"; sourceTree = "<group>"; };
 		E8FDE1392C7A4B4600128E2A /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		E8FDE13B2C7A4C6200128E2A /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				E8FDE12E2C7A1A9800128E2A /* MainView.swift */,
 				E8FDE1372C7A4AC900128E2A /* TextField+RemoveFocus.swift */,
 				E8FDE1392C7A4B4600128E2A /* SearchTextField.swift */,
+				E8FDE13B2C7A4C6200128E2A /* MovieCard.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				E8FDE1342C7A3A3200128E2A /* WelcomeBackTopView.swift in Sources */,
 				E8FDE0FC2C7783D800128E2A /* Peek_swiftUIApp.swift in Sources */,
 				E8FDE13A2C7A4B4600128E2A /* SearchTextField.swift in Sources */,
+				E8FDE13C2C7A4C6200128E2A /* MovieCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
