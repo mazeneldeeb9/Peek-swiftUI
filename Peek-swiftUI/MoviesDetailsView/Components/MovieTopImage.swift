@@ -9,24 +9,30 @@ import SwiftUI
 
 struct MovieTopImage: View {
     let urlString: String
-    
+    let height = UIScreen.main.bounds.size.height / 2.3
     var body: some View {
-        AsyncImage(url: URL(string:  urlString)) { image in
+        AsyncImage(url: URL(string: urlString)) { image in
             image
                 .resizable()
                 .scaledToFill()
-                .clipShape(
-                    .rect(
-                        topLeadingRadius: 0,
-                        bottomLeadingRadius: 32,
-                        bottomTrailingRadius: 32,
-                        topTrailingRadius: 0
-                    ))
+                .frame(width: .infinity, height: height)
+                .clipShape(.rect(
+                    topLeadingRadius: 0,
+                    bottomLeadingRadius: 32,
+                    bottomTrailingRadius: 32,
+                    topTrailingRadius: 0
+                ))
                 .shadow(radius: 10)
+            
         } placeholder: {
             ProgressView()
                 .foregroundStyle(.lightPurple)
+                .frame(width: .infinity, height: height)
         }
-        .frame(width: .infinity, height: 130)
+        .frame(width: .infinity, height: height)
     }
+}
+
+#Preview {
+    MovieTopImage(urlString:  "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg")
 }
