@@ -69,6 +69,7 @@
 		E8FDE0FA2C7783D800128E2A /* Peek-swiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				E82593A82C7C73490020B8B3 /* MoviesTabBar */,
 				E8FDE1092C77969100128E2A /* Info.plist */,
 				E8FDE0FB2C7783D800128E2A /* Peek_swiftUIApp.swift */,
 				E8FDE0FF2C7783DA00128E2A /* Assets.xcassets */,
@@ -76,7 +77,6 @@
 				E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */,
 				E8FDE12C2C7A1A8200128E2A /* FavoriteView.swift */,
 				E8FDE12E2C7A1A9800128E2A /* MainView.swift */,
-				E82593A82C7C73490020B8B3 /* MoviesTabBar */,
 			);
 			path = "Peek-swiftUI";
 			sourceTree = "<group>";
