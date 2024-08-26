@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E8FDE0FC2C7783D800128E2A /* Peek_swiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE0FB2C7783D800128E2A /* Peek_swiftUIApp.swift */; };
-		E8FDE0FE2C7783D800128E2A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE0FD2C7783D800128E2A /* ContentView.swift */; };
 		E8FDE1002C7783DA00128E2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FDE0FF2C7783DA00128E2A /* Assets.xcassets */; };
 		E8FDE1032C7783DA00128E2A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FDE1022C7783DA00128E2A /* Preview Assets.xcassets */; };
 		E8FDE10B2C7797A000128E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */; };
@@ -20,7 +19,6 @@
 /* Begin PBXFileReference section */
 		E8FDE0F82C7783D800128E2A /* Peek-swiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peek-swiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FDE0FB2C7783D800128E2A /* Peek_swiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peek_swiftUIApp.swift; sourceTree = "<group>"; };
-		E8FDE0FD2C7783D800128E2A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E8FDE0FF2C7783DA00128E2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8FDE1022C7783DA00128E2A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E8FDE1092C77969100128E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -62,7 +60,6 @@
 			children = (
 				E8FDE1092C77969100128E2A /* Info.plist */,
 				E8FDE0FB2C7783D800128E2A /* Peek_swiftUIApp.swift */,
-				E8FDE0FD2C7783D800128E2A /* ContentView.swift */,
 				E8FDE0FF2C7783DA00128E2A /* Assets.xcassets */,
 				E8FDE1012C7783DA00128E2A /* Preview Content */,
 				E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */,
@@ -152,7 +149,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FDE0FE2C7783D800128E2A /* ContentView.swift in Sources */,
 				E8FDE12F2C7A1A9800128E2A /* MainView.swift in Sources */,
 				E8FDE1312C7A214D00128E2A /* MoviesTabBar.swift in Sources */,
 				E8FDE12D2C7A1A8200128E2A /* FavoriteView.swift in Sources */,
