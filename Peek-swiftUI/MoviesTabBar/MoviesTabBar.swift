@@ -21,9 +21,8 @@ struct MoviesTabBar: View {
                 .tag(1)
         }
         .tint(.brightPurple)
-        .onAppear{
-            UITabBar.appearance().backgroundColor = .mainPurple
-            UITabBar.appearance().unselectedItemTintColor = .inactiveGrey
+        .onAppear {
+            setupColors()
         }
     }
 }
