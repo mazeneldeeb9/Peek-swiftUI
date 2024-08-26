@@ -12,7 +12,7 @@ struct SearchTextField: View {
 
     var body: some View {
         TextField("", text: $searchText, prompt: Text("Search")
-            .foregroundStyle(.white.opacity(0.8)))
+            .foregroundColor(.white.opacity(0.8)))
         .padding([.leading, .trailing], 12)
         .frame(height: 55)
         .background(.lightPurple)
