@@ -43,7 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				E82593B02C7C90620020B8B3 /* Components */,
-				E82593AE2C7C90440020B8B3 /* MovieTopImage.swift */,
+				E82593AC2C7C8D620020B8B3 /* MoviesDetailsView.swift */,
 			);
 			path = MoviesDetailsView;
 			sourceTree = "<group>";
@@ -51,7 +51,7 @@
 		E82593B02C7C90620020B8B3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				E82593AC2C7C8D620020B8B3 /* MoviesDetailsView.swift */,
+				E82593AE2C7C90440020B8B3 /* MovieTopImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
