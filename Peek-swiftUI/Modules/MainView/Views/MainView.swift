@@ -22,19 +22,23 @@ struct MainView: View {
     var body: some View {
         VStack(alignment: .leading, content: {
             WelcomeBackTopView()
+                .padding(.horizontal)
             SearchTextField()
+                .padding(.horizontal)
             List(moviesResponses, id: \.categoryTitle) { moviesResponse in
                 CategoryListView(category: moviesResponse)
                     .padding(.top, 16)
-                
+                    .padding(.horizontal)
                     .frame(maxWidth: .infinity)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
             }.listStyle(.plain)
                 .padding(.trailing, -13)
-        }).background(.mainPurple)
-            .padding()
+        })
+            .background(.mainPurple)
             .removeFocusOnTap()
+            
+        
     }
 }
 
