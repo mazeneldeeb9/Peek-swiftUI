@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Movie: Identifiable {
+struct Movie: Decodable, Identifiable {
     let title: String?
-    let backdropPath: String
+    let backdropPath: String?
     private let genreIds: [Int]?
     let id: Int
     let originalLanguage: String?
@@ -26,13 +26,6 @@ struct Movie: Identifiable {
     private var genres: [Genre]?
     
     
-    init(title: String,  id: Int, posterPath: String?, voteAverage: Double) {
-        self.id = id
-        self.title = title
-        self.posterPath = posterPath
-        self.voteAverage = voteAverage
-        
-    }
     enum CodingKeys: String, CodingKey {
         case title
         case backdropPath = "backdrop_path"
