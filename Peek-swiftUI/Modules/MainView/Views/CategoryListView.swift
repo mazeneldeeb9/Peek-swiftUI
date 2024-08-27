@@ -23,13 +23,15 @@ struct CategoryListView: View {
                 LazyHStack {
                     ForEach(category.results, id: \.id) { movie in
                         MovieCard(movie: movie)
-                        
                     }
                     .listStyle(.plain)
                 }
-            }.frame(height: Constants.movieCardheight, alignment: .leading)
-        }.background(.mainPurple)
-            .ignoresSafeArea()
+            }
+            .frame(height: Constants.movieCardheight,
+                    alignment: .leading)
+        }
+        .background(.mainPurple)
+        .ignoresSafeArea()
     }
     
 }
