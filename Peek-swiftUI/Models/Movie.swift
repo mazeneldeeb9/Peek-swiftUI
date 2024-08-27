@@ -19,7 +19,7 @@ struct Movie: Identifiable {
     let posterPath: String?
    // let releaseDate: String?
    // let video: Bool?
-    private let voteAverage: Double?
+    let voteAverage: Double?
     //let voteCount: Int?
     var budget: Int?
     //private var runtime: Int?
