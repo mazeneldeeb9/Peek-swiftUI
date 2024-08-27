@@ -10,10 +10,8 @@ import SwiftUI
 struct MovieCard: View {
     let movie: Movie
     
-    
     @State private var isFavorited = false
-    
-    let url = URL(string: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg")
+
     var body: some View {
         
         ZStack {
@@ -33,7 +31,7 @@ struct MovieCard: View {
                 Spacer()
                 VStack {
                     HStack {
-                        Text(movie.title!)
+                        Text(movie.title)
                             .foregroundStyle(.white)
                             .fontWeight(.heavy)
                             .font(.title)

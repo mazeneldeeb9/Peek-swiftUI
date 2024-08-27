@@ -33,9 +33,6 @@ struct MainView: View {
                     .listRowBackground(Color.clear)
             }.listStyle(.plain)
                 .padding(.trailing, -13)
-            
-            
-            
         }).background(.mainPurple)
             .padding()
             .removeFocusOnTap()
