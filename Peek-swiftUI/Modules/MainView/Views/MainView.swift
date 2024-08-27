@@ -19,11 +19,13 @@ struct MainView: View {
                                                                Movie(title: "Ad Astra", id: 2, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
                                                                Movie(title: "Ad Astra", id: 3, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)]),
     ]
+    
+    @State var searchText: String = ""
     var body: some View {
         VStack(alignment: .leading, content: {
             WelcomeBackTopView()
                 .padding(.horizontal)
-            SearchTextField()
+            SearchTextField(searchText: $searchText)
                 .padding(.horizontal)
             List(moviesResponses, id: \.categoryTitle) { moviesResponse in
                 CategoryListView(category: moviesResponse)

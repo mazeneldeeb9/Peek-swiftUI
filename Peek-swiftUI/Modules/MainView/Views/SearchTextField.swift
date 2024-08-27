@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchTextField: View {
-    @State var searchText: String = ""
+    @Binding var searchText: String
 
     var body: some View {
         TextField("", text: $searchText, prompt: Text("Search")
@@ -30,5 +30,5 @@ struct SearchTextField: View {
 }
 
 #Preview {
-    SearchTextField()
+    SearchTextField(searchText: .constant(""))
 }
