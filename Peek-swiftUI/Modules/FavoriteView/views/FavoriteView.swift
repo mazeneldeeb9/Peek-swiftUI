@@ -12,15 +12,13 @@ struct FavoriteView: View {
                            Movie(title: "Ad Astra", id: 2, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
                            Movie(title: "Ad Astra", id: 3, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)]
     var body: some View {
-        ZStack {
-            Color.mainPurple
-                .ignoresSafeArea()
             VStack {
                 HStack {
                     Text("Favorites")
                         .bold()
                         .font(.largeTitle)
                         .foregroundStyle(.white)
+                        .padding()
                     Spacer()
                 }
                 
@@ -30,9 +28,8 @@ struct FavoriteView: View {
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
                 }.listStyle(.plain)
-            }.padding()
-            
-        }
+            }.background(.mainPurple)
+          
     }
 }
 
