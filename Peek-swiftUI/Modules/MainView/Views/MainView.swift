@@ -23,7 +23,9 @@ struct MainView: View {
     @State var searchText: String = ""
     var body: some View {
         VStack(alignment: .leading, content: {
-            WelcomeBackTopView()
+            WelcomeBackTopView(
+            message: "Welcome Back,", 
+            name: "Mazen")
                 .padding(.horizontal)
             SearchTextField(searchText: $searchText)
                 .padding(.horizontal)
