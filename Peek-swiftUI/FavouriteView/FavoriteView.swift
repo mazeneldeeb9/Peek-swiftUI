@@ -28,7 +28,7 @@ struct FavoriteView: View {
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
                 }.listStyle(.plain)
-            }.padding([.leading, .top, .trailing])
+            }.padding()
 
         }
     }
