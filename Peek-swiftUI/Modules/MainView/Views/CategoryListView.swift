@@ -27,7 +27,7 @@ struct CategoryListView: View {
                     }
                     .listStyle(.plain)
                 }
-            }.frame(width: .infinity, height: Constants.movieCardheight, alignment: .leading)
+            }.frame(height: Constants.movieCardheight, alignment: .leading)
         }.background(.mainPurple)
             .ignoresSafeArea()
     }
