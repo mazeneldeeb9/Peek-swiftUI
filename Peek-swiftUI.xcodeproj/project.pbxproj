@@ -78,6 +78,25 @@
 			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
+		E88147DE2C7DDD68002443BA /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				E8FDE1482C7B1A5C00128E2A /* Constants.swift */,
+				E8FDE13E2C7B11A500128E2A /* Extentions */,
+				E88147DB2C7DD515002443BA /* ViewModifiers */,
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
+		E88147DF2C7DDDBD002443BA /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E82593A82C7C73490020B8B3 /* MoviesTabBar */,
+				E8FDE1322C7A3A1B00128E2A /* MainView */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		E8FDE0EF2C7783D800128E2A = {
 			isa = PBXGroup;
 			children = (
@@ -97,16 +116,15 @@
 		E8FDE0FA2C7783D800128E2A /* Peek-swiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				E88147DF2C7DDDBD002443BA /* Modules */,
+				E88147DE2C7DDD68002443BA /* Utilites */,
 				E8FDE1412C7B12A200128E2A /* Models */,
-				E8FDE1322C7A3A1B00128E2A /* MainView */,
-				E82593A82C7C73490020B8B3 /* MoviesTabBar */,
 				E8FDE1092C77969100128E2A /* Info.plist */,
 				E8FDE0FB2C7783D800128E2A /* Peek_swiftUIApp.swift */,
 				E8FDE0FF2C7783DA00128E2A /* Assets.xcassets */,
 				E8FDE1012C7783DA00128E2A /* Preview Content */,
 				E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */,
 				E8FDE12C2C7A1A8200128E2A /* FavoriteView.swift */,
-				E8FDE1482C7B1A5C00128E2A /* Constants.swift */,
 			);
 			path = "Peek-swiftUI";
 			sourceTree = "<group>";
@@ -122,23 +140,21 @@
 		E8FDE1322C7A3A1B00128E2A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				E88147DB2C7DD515002443BA /* ViewModifiers */,
-				E8FDE13E2C7B11A500128E2A /* Extentions */,
-				E8FDE13D2C7B118800128E2A /* Components */,
-				E8303C5B2C7CDAC5005F8A2B /* MainView.swift */,
+				E8FDE13D2C7B118800128E2A /* Views */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
 		};
-		E8FDE13D2C7B118800128E2A /* Components */ = {
+		E8FDE13D2C7B118800128E2A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E8303C5B2C7CDAC5005F8A2B /* MainView.swift */,
 				E8FDE13B2C7A4C6200128E2A /* MovieCard.swift */,
 				E8FDE1392C7A4B4600128E2A /* SearchTextField.swift */,
 				E8FDE1332C7A3A3200128E2A /* WelcomeBackTopView.swift */,
 				E8FDE1462C7B139B00128E2A /* CategoryListView.swift */,
 			);
-			path = Components;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E8FDE13E2C7B11A500128E2A /* Extentions */ = {
