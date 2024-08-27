@@ -1,3 +1,10 @@
+//
+//  RemoveFocusOnTapModifier.swift
+//  Peek-swiftUI
+//
+//  Created by mazen eldeeb on 27/08/2024.
+//
+
 import SwiftUI
 
 public struct RemoveFocusOnTapModifier: ViewModifier {
@@ -14,11 +21,5 @@ public struct RemoveFocusOnTapModifier: ViewModifier {
                 }
             }
 #endif
-    }
-}
-
-extension View {
-    public func removeFocusOnTap() -> some View {
-        modifier(RemoveFocusOnTapModifier())
     }
 }
