@@ -17,22 +17,25 @@ struct NetworkManager {
     ]
     private let timeout: Double = 5
     
-    
-    func getMovies(for category: Category) -> AnyPublisher<MoviesResponse, NetworkError> {
-        guard let url = URL(string: "\(baseUrl)\(category.rawValue)") else {
-            return Fail(error: NetworkError.badUrl).eraseToAnyPublisher()
+    private func makeRequest<T: Decodable>(url: URL, queryItems: [URLQueryItem]) -> AnyPublisher<T, NetworkError> {
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+        
+        if var existingQueryItems = components.queryItems {
+            existingQueryItems.append(contentsOf: queryItems)
+            components.queryItems = existingQueryItems
+        } else {
+            components.queryItems = queryItems
         }
         
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-        let queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "language", value: "en-US"),
-            URLQueryItem(name: "page", value: "1"),
-        ]
-        components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
-        var request = URLRequest(url: components.url!)
+        guard let finalURL = components.url else {
+            return Fail(error: NetworkError.badUrl).eraseToAnyPublisher()
+        }
+
+        var request = URLRequest(url: finalURL)
         request.httpMethod = "GET"
         request.timeoutInterval = timeout
         request.allHTTPHeaderFields = headers
+        
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { output in
                 guard let httpResponse = output.response as? HTTPURLResponse,
@@ -41,16 +44,45 @@ struct NetworkManager {
                 }
                 return output.data
             }
-            .decode(type: MoviesResponse.self, decoder: JSONDecoder())
+            .decode(type: T.self, decoder: JSONDecoder())
             .mapError { error -> NetworkError in
-                if error is DecodingError {
-                    return NetworkError.decodingFailed
+                if let decodingError = error as? DecodingError {
+                    return .decodingFailed
+                } else if let urlError = error as? URLError {
+                    return .requestFailed(statusCode: urlError.code.rawValue)
                 } else {
-                    return error as! NetworkError
+                    return error as? NetworkError ?? .unknown
                 }
             }
             .eraseToAnyPublisher()
     }
+
+    func getMovies(for category: Category) -> AnyPublisher<MoviesResponse, NetworkError> {
+        guard let url = URL(string: "\(baseUrl)\(category.rawValue)") else {
+            return Fail(error: NetworkError.badUrl).eraseToAnyPublisher()
+        }
+        
+        let queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "language", value: "en-US"),
+            URLQueryItem(name: "page", value: "1"),
+        ]
+        
+        return makeRequest(url: url, queryItems: queryItems)
+    }
+
+    
+    func getMovieDetails(of movieId: Int) -> AnyPublisher<Movie, NetworkError> {
+        guard let url = URL(string: "\(baseUrl)\(movieId)") else {
+            return Fail(error: NetworkError.badUrl).eraseToAnyPublisher()
+        }
+
+        let queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "language", value: "en-US")
+        ]
+
+        return makeRequest(url: url, queryItems: queryItems)
+    }
+    
 }
 
 
