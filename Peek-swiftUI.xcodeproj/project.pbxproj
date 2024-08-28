@@ -110,6 +110,8 @@
 				E853D6A32C7F264900298CDA /* ErrorView.swift */,
 			);
 			path = ErrorView;
+            sourceTree = "<group>";
+        };
 		E853D6A82C7F546D00298CDA /* Network */ = {
 			isa = PBXGroup;
 			children = (
