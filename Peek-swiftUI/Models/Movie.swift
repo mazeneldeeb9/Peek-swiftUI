@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Movie: Decodable, Identifiable {
+struct Movie: Decodable, Identifiable, Hashable, Equatable {
+    
     let title: String?
     let backdropPath: String?
     private let genreIds: [Int]?
@@ -43,6 +44,16 @@ struct Movie: Decodable, Identifiable {
         case budget
         case runtime
         case genres
+    }
+    
+    
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
     }
     
     func getDuration() -> String {
