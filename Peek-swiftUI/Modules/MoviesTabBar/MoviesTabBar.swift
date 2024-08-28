@@ -10,6 +10,8 @@ import SwiftUI
 struct MoviesTabBar: View {
     @AppStorage("selectedTab") private var selectedTab = 0
     
+    @EnvironmentObject var favoritesHandler: FavoritesHandler
+
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -19,6 +21,7 @@ struct MoviesTabBar: View {
             FavoriteView()
                 .tabItem { Label("Favourite", systemImage: "heart.fill") }
                 .tag(1)
+                .badge(favoritesHandler.getCount())
         }
         .tint(.brightPurple)
         .onAppear {

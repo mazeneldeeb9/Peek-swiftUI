@@ -2,13 +2,15 @@ import SwiftUI
 
 struct FavoriteCard: View {
     let movie: Movie
-    @State private var isFavorite = true
+    
+    @EnvironmentObject var favoritesHandler: FavoritesHandler
+    
     var body: some View {
         ZStack {
             Rectangle()
                 .frame(height: 170)
-            .foregroundStyle(.lightPurple)
-            .clipShape(RoundedRectangle(cornerRadius: 20))
+                .foregroundStyle(.lightPurple)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
             HStack(alignment: .bottom) {
                 AsyncImage(url: URL(string: movie.posterPath!)) { image in
                     image
@@ -33,9 +35,9 @@ struct FavoriteCard: View {
                     .padding(.top, 60)
                 Spacer()
                 Button(action: {
-                    isFavorite.toggle()
+                    favoritesHandler.remove(movie)
                 }, label: {
-                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                    Image(systemName: "heart.fill")
                         .foregroundStyle(.red)
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 }).padding(.trailing, 25)

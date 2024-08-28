@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct FavoriteView: View {
-    let movies: [Movie] = [Movie(title: "Ad Astra", id: 1, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-                           Movie(title: "Ad Astra", id: 2, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-                           Movie(title: "Ad Astra", id: 3, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)]
+    @EnvironmentObject var favoritesHandler: FavoritesHandler
+
     var body: some View {
             VStack {
                 HStack {
@@ -22,7 +21,7 @@ struct FavoriteView: View {
                     Spacer()
                 }
                 
-                List(movies, id: \.id) {movie in
+                List(Array(favoritesHandler.favoritesMovies), id: \.id) {movie in
                     FavoriteCard(movie: movie)
                         .frame(maxWidth: .infinity)
                         .listRowInsets(EdgeInsets())

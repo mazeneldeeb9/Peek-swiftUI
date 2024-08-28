@@ -28,6 +28,10 @@ class FavoritesHandler: ObservableObject {
         favoritesMovies.insert(movie)
     }
     
+    func getCount() -> Int {
+        return favoritesMovies.count
+    }
+    
     func remove(_ movie: Movie) {
         favoritesMovies.remove(movie)
     }

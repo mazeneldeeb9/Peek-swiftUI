@@ -12,7 +12,7 @@ struct CategoryListView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(category.categoryTitle)
+                Text(category.categoryTitle ?? "Unkown")
                     .bold()
                     .font(.title)
                     .foregroundStyle(.white)
@@ -38,9 +38,3 @@ struct CategoryListView: View {
 
 
 
-struct CategoryListView_Previews: PreviewProvider {
-    static var previews: some View {
-        let movieResponse: MoviesResponse = MoviesResponse(categoryTitle: "Now Playing", results: [Movie(title: "Ad Astra", id: 1, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)])
-        CategoryListView(category: movieResponse)
-    }
-}
