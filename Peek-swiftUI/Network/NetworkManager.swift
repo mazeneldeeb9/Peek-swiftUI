@@ -50,7 +50,7 @@ struct NetworkManager {
             }
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError { error -> NetworkError in
-                if let decodingError = error as? DecodingError {
+                if error is DecodingError {
                     return .decodingFailed
                 } else if let urlError = error as? URLError {
                     return .requestFailed(statusCode: urlError.code.rawValue)
