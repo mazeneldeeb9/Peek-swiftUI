@@ -20,7 +20,8 @@ struct MovieCard: View {
                     Text(movie.title ?? "N/A")
                         .foregroundStyle(.white)
                         .fontWeight(.heavy)
-                        .font(.title)
+                        .font(.title3)
+                        .lineLimit(1)
                     Spacer()
                     Button(action: {
                         if(favoritesHandler.contains(movie)) {
@@ -59,7 +60,7 @@ struct MovieCard: View {
         }
         .frame(width: Constants.movieCardWidth, height: Constants.movieCardheight)
         .background(
-            AsyncImage(url: URL(string: movie.posterPath!)) { image in
+            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/\(movie.posterPath!)")) { image in
                 image
                     .resizable()
                     .scaledToFill()
