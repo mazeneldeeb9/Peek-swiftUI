@@ -21,7 +21,8 @@ struct MovieCard: View {
                     Text(movie.title ?? "N/A")
                         .foregroundStyle(.white)
                         .fontWeight(.heavy)
-                        .font(.title)
+                        .font(.title3)
+                        .lineLimit(1)
                     Spacer()
                     Button(action: {
                         isFavorited.toggle()}) {
@@ -58,7 +59,7 @@ struct MovieCard: View {
         }
         .frame(width: Constants.movieCardWidth, height: Constants.movieCardheight)
         .background(
-            AsyncImage(url: URL(string: movie.posterPath!)) { image in
+            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/\(movie.posterPath!)")) { image in
                 image
                     .resizable()
                     .scaledToFill()
@@ -74,10 +75,3 @@ struct MovieCard: View {
     }
 }
 
-struct MovieCard_Previews: PreviewProvider {
-    static var previews: some View {
-        let movie = Movie(title: "Ad Astra", id: 3, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)
-        
-        MovieCard(movie: movie)
-    }
-}
