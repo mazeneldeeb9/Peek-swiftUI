@@ -5,8 +5,8 @@ struct FavoriteCard: View {
     @State private var isFavorite = true
     var body: some View {
         ZStack {
-            Rectangle().frame(
-                width: .infinity, height: 170)
+            Rectangle()
+                .frame(height: 170)
             .foregroundStyle(.lightPurple)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             HStack(alignment: .bottom) {
@@ -42,7 +42,7 @@ struct FavoriteCard: View {
                     .padding(.bottom, 60)
             }
         }
-        .frame(width: .infinity, height: 200)
+        .frame(height: 200)
         .padding()
     }
 }
