@@ -60,6 +60,8 @@ struct MoviesDetailsView: View {
                         .foregroundStyle(.gray)
                         .padding(.horizontal)
                         .lineSpacing(0)
+                        .padding(.bottom)
+
                 }
                 Spacer()
              
