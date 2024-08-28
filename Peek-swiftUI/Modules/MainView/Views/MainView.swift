@@ -5,7 +5,7 @@ struct MainView: View {
     @StateObject private var handler: Handler = .init()
     
     var body: some View {
-        ZStack {
+        Group {
             if handler.isLoading {
                 LoadingView()
             } else if handler.hasError {
@@ -13,28 +13,29 @@ struct MainView: View {
                     handler.fetchCategories()
                 })
             } else {
-                VStack(alignment: .leading, content: {
+                VStack(alignment: .leading) {
                     WelcomeBackTopView(
                         message: "Welcome Back,",
-                        name: "Mazen")
-                    .padding(.horizontal)
+                        name: "Mazen"
+                    )
+                    
                     SearchTextField(searchText: $searchText)
-                        .padding(.horizontal)
                     List(handler.categories, id: \.categoryTitle) { moviesResponse in
                         CategoryListView(category: moviesResponse)
                             .padding(.top, 16)
-                            .padding(.horizontal)
                             .frame(maxWidth: .infinity)
                             .listRowInsets(EdgeInsets())
                             .listRowBackground(Color.clear)
                     }
-                    .listStyle(.plain)
                     .padding(.trailing, -13)
-                })
+                    .listStyle(.plain)
+                }
+                .padding()
                 .background(Color.mainPurple)
                 .removeFocusOnTap()
             }
         }
+        
     }
 }
 

@@ -15,7 +15,7 @@ extension MainView {
         @Published var isLoading: Bool = false
         @Published var hasError: Bool = false
         @Published var errorMessage: String?
-        private let networkManager: NetworkManager = NetworkManager()
+        private let moviesAPI: MoviesAPI = MoviesAPI()
         private var storage: Set<AnyCancellable> = []
         
         
@@ -33,7 +33,7 @@ extension MainView {
                 (.topRated, "Top Rated"),
             ]
             let publishers = categoriesToFetch.map { category, title in
-                networkManager.getMovies(for: category)
+                moviesAPI.getMovies(for: category)
                     .map { response -> MoviesResponse in
                         var updatedResponse = response
                         updatedResponse.categoryTitle = title
