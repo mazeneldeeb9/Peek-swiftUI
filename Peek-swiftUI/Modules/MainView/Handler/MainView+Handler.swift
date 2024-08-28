@@ -19,7 +19,9 @@ extension MainView {
         private var storage: Set<AnyCancellable> = []
         
         
-        init() {}
+        init() {
+            fetchCategories()
+        }
         
         
         func fetchCategories() {

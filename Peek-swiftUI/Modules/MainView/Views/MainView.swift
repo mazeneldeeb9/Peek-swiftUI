@@ -35,11 +35,6 @@ struct MainView: View {
                 .removeFocusOnTap()
             }
         }
-        .onAppear {
-            if handler.categories.isEmpty {
-                handler.fetchCategories()
-            }
-        }
     }
 }
 
