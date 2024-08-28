@@ -80,6 +80,15 @@
 			path = MoviesTabBar;
 			sourceTree = "<group>";
 		};
+		E853D6A82C7F546D00298CDA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E88147E42C7DF869002443BA /* NetworkError.swift */,
+				E88147E02C7DF617002443BA /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		E88147DB2C7DD515002443BA /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +154,7 @@
 		E8FDE0FA2C7783D800128E2A /* Peek-swiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				E853D6A82C7F546D00298CDA /* Network */,
 				E88147DF2C7DDDBD002443BA /* Modules */,
 				E88147DE2C7DDD68002443BA /* Utilites */,
 				E8FDE1412C7B12A200128E2A /* Models */,
@@ -199,9 +209,7 @@
 				E8FDE1422C7B12AE00128E2A /* Movie.swift */,
 				E8FDE1442C7B133200128E2A /* Genre.swift */,
 				E8FDE14A2C7B1C7F00128E2A /* MoviesResponse.swift */,
-				E88147E02C7DF617002443BA /* NetworkManager.swift */,
 				E88147E22C7DF7FD002443BA /* Category.swift */,
-				E88147E42C7DF869002443BA /* NetworkError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
