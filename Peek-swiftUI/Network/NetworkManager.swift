@@ -17,15 +17,19 @@ struct NetworkManager {
     ]
     private let timeout: Double = 5
     
-    private func makeRequest<T: Decodable>(url: URL, queryItems: [URLQueryItem]) -> AnyPublisher<T, NetworkError> {
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+    func makeRequest<T: Decodable>(urlExtension: String, newQueryItems: [URLQueryItem]? = nil) -> AnyPublisher<T, NetworkError> {
         
-        if var existingQueryItems = components.queryItems {
-            existingQueryItems.append(contentsOf: queryItems)
-            components.queryItems = existingQueryItems
-        } else {
-            components.queryItems = queryItems
+        guard let url = URL(string: "\(baseUrl)\(urlExtension)") else {
+            return Fail(error: NetworkError.badUrl).eraseToAnyPublisher()
         }
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+        var queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "language", value: "en-US")
+        ]
+        if let items = newQueryItems {
+            queryItems.append(contentsOf: items)
+        }
+        components.queryItems = queryItems
         
         guard let finalURL = components.url else {
             return Fail(error: NetworkError.badUrl).eraseToAnyPublisher()
@@ -57,31 +61,8 @@ struct NetworkManager {
             .eraseToAnyPublisher()
     }
 
-    func getMovies(for category: Category) -> AnyPublisher<MoviesResponse, NetworkError> {
-        guard let url = URL(string: "\(baseUrl)\(category.rawValue)") else {
-            return Fail(error: NetworkError.badUrl).eraseToAnyPublisher()
-        }
-        
-        let queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "language", value: "en-US"),
-            URLQueryItem(name: "page", value: "1"),
-        ]
-        
-        return makeRequest(url: url, queryItems: queryItems)
-    }
-
     
-    func getMovieDetails(of movieId: Int) -> AnyPublisher<Movie, NetworkError> {
-        guard let url = URL(string: "\(baseUrl)\(movieId)") else {
-            return Fail(error: NetworkError.badUrl).eraseToAnyPublisher()
-        }
 
-        let queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "language", value: "en-US")
-        ]
-
-        return makeRequest(url: url, queryItems: queryItems)
-    }
     
 }
 
