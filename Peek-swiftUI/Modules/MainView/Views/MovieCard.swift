@@ -25,7 +25,7 @@ struct MovieCard: View {
                     Spacer()
                     Button(action: {
                         if(favoritesHandler.contains(movie)) {
-                            favoritesHandler.add(movie)
+                            favoritesHandler.remove(movie)
                         } else {
                             favoritesHandler.add(movie)
                         }
@@ -45,6 +45,7 @@ struct MovieCard: View {
                     Text(movie.getVoteAverage())
                         .foregroundStyle(.lightYellow)
                         .bold()
+                    Spacer()
                 }.padding([.leading, .trailing], 16)
                     .padding(.bottom, 8)
             }
