@@ -13,7 +13,6 @@ struct MovieCard: View {
     @State private var isFavorited = false
     
     var body: some View {
-        
         VStack {
             Spacer()
             VStack {
@@ -41,9 +40,6 @@ struct MovieCard: View {
                         .foregroundStyle(.lightYellow)
                         .bold()
                     Spacer()
-                    Image(systemName: "clock.fill").foregroundStyle(.gray)
-                    Text("1h 56m")
-                        .foregroundStyle(.gray)
                     
                 }.padding([.leading, .trailing], 16)
                     .padding(.bottom, 8)
