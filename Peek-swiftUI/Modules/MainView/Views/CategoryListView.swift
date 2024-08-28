@@ -22,16 +22,23 @@ struct CategoryListView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     ForEach(category.results, id: \.id) { movie in
-                        MovieCard(movie: movie)
+                        NavigationLink(destination: MoviesDetailsView(movieId: movie.id),
+                                       label: {
+                            MovieCard(movie: movie)
+                        }
+                        )
+                        
                     }
                     .listStyle(.plain)
                 }
             }
             .frame(height: Constants.movieCardheight,
-                    alignment: .leading)
+                   alignment: .leading)
         }
         .background(.mainPurple)
         .ignoresSafeArea()
+        
+        
     }
     
 }

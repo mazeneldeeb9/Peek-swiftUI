@@ -74,4 +74,8 @@ struct Movie: Codable, Identifiable {
         let secondGenre = genres?.dropFirst().first?.name ?? "Unknown"
         return (firstGenre, secondGenre)
     }
+    func getVoteCount() -> String {
+        guard let voteCount = self.voteCount else {return "N/A"}
+        return "(\(voteCount))"
+    }
 }
