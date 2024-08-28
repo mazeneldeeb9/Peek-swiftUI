@@ -9,14 +9,15 @@ import SwiftUI
 
 struct ErrorView: View {
     let callAgain: () -> Void
-
+    let errorMessage: String
+    
     var body: some View {
         VStack {
             Image("Error")
                 .resizable()
                 .frame(width: 400, height: 400)
                 .scaledToFit()
-            Text("Somethine went wrong")
+            Text(errorMessage)
                 .font(.title2)
                 .bold()
                 .foregroundStyle(.white)
@@ -38,5 +39,5 @@ struct ErrorView: View {
 
 #Preview {
     
-    ErrorView(callAgain: {})
+    ErrorView(callAgain: {}, errorMessage: "Something went wrong")
 }

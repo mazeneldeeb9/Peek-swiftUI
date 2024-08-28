@@ -9,9 +9,11 @@ struct MainView: View {
             if handler.isLoading {
                 LoadingView()
             } else if handler.hasError {
-                ErrorView(callAgain: {
-                    handler.fetchCategories()
-                })
+                ErrorView(
+                    callAgain: {
+                        handler.fetchCategories()},
+                    errorMessage: handler.errorMessage ?? "Something went wrong"
+                )
             } else {
                 VStack(alignment: .leading) {
                     WelcomeBackTopView(
@@ -34,8 +36,8 @@ struct MainView: View {
                 .background(Color.mainPurple)
                 .removeFocusOnTap()
             }
+            
         }
-        
     }
 }
 
