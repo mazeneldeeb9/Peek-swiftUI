@@ -1,52 +1,48 @@
-//
-//  MainView.swift
-//  Peek-swiftUI
-//
-//  Created by mazen eldeeb on 24/08/2024.
-//
-
 import SwiftUI
 
 struct MainView: View {
-    let moviesResponses: [MoviesResponse] = [
-        MoviesResponse(categoryTitle: "Now Playing", results: [  Movie(title: "Ad Astra", id: 1, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-                                                                 Movie(title: "Ad Astra", id: 2, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-                                                                 Movie(title: "Ad Astra", id: 3, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)]),
-        MoviesResponse(categoryTitle: "Popular", results: [  Movie(title: "Ad Astra", id: 1, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-                                                             Movie(title: "Ad Astra", id: 2, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-                                                             Movie(title: "Ad Astra", id: 3, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)]),
-        MoviesResponse(categoryTitle: "Top Rated", results: [  Movie(title: "Ad Astra", id: 1, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-                                                               Movie(title: "Ad Astra", id: 2, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1),
-                                                               Movie(title: "Ad Astra", id: 3, posterPath: "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg", voteAverage: 6.1)]),
-    ]
-    
     @State var searchText: String = ""
+    @StateObject private var handler: Handler = .init()
+    
     var body: some View {
-        VStack(alignment: .leading, content: {
-            WelcomeBackTopView(
-            message: "Welcome Back,", 
-            name: "Mazen")
-                .padding(.horizontal)
-            SearchTextField(searchText: $searchText)
-                .padding(.horizontal)
-            List(moviesResponses, id: \.categoryTitle) { moviesResponse in
-                CategoryListView(category: moviesResponse)
-                    .padding(.top, 16)
+        ZStack {
+            if handler.isLoading {
+                LoadingView()
+            } else if handler.hasError {
+                ErrorView(callAgain: {
+                    handler.fetchCategories()
+                })
+            } else {
+                VStack(alignment: .leading, content: {
+                    WelcomeBackTopView(
+                        message: "Welcome Back,",
+                        name: "Mazen")
                     .padding(.horizontal)
-                    .frame(maxWidth: .infinity)
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
-            }.listStyle(.plain)
-                .padding(.trailing, -13)
-        })
-            .background(.mainPurple)
-            .removeFocusOnTap()
-            
-        
+                    SearchTextField(searchText: $searchText)
+                        .padding(.horizontal)
+                    List(handler.categories, id: \.categoryTitle) { moviesResponse in
+                        CategoryListView(category: moviesResponse)
+                            .padding(.top, 16)
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity)
+                            .listRowInsets(EdgeInsets())
+                            .listRowBackground(Color.clear)
+                    }
+                    .listStyle(.plain)
+                    .padding(.trailing, -13)
+                })
+                .background(Color.mainPurple)
+                .removeFocusOnTap()
+            }
+        }
+        .onAppear {
+            if handler.categories.isEmpty {
+                handler.fetchCategories()
+            }
+        }
     }
 }
 
 #Preview {
     MainView()
 }
-
