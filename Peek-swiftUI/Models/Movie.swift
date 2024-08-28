@@ -7,74 +7,67 @@
 
 import Foundation
 
-struct Movie: Identifiable {
+struct Movie: Decodable, Identifiable {
     let title: String?
-   // let backdropPath: String
-   // private let genreIds: [Int]?
+    let backdropPath: String?
+    private let genreIds: [Int]?
     let id: Int
-   // let originalLanguage: String?
-    //let originalTitle: String?
-   // let overview: String?
-   // let popularity: Double?
+    let originalLanguage: String?
+    let originalTitle: String?
+    let overview: String?
+    let popularity: Double?
     let posterPath: String?
-   // let releaseDate: String?
-   // let video: Bool?
-    let voteAverage: Double?
-    //let voteCount: Int?
+    let releaseDate: String?
+    let video: Bool?
+    private let voteAverage: Double?
+    let voteCount: Int?
     var budget: Int?
-    //private var runtime: Int?
-    //private var genres: [Genre]?
-
+    private var runtime: Int?
+    private var genres: [Genre]?
     
-    init(title: String,  id: Int, posterPath: String?, voteAverage: Double) {
-        self.id = id
-        self.title = title
-        self.posterPath = posterPath
-        self.voteAverage = voteAverage
-        
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case backdropPath = "backdrop_path"
+        case genreIds = "genre_ids"
+        case id
+        case originalLanguage = "original_language"
+        case originalTitle = "original_title"
+        case overview
+        case popularity
+        case posterPath = "poster_path"
+        case releaseDate = "release_date"
+        case video
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
+        case budget
+        case runtime
+        case genres
     }
-//    enum CodingKeys: String, CodingKey {
-//        case title
-//        case backdropPath = "backdrop_path"
-//        case genreIds = "genre_ids"
-//        case id
-//        case originalLanguage = "original_language"
-//        case originalTitle = "original_title"
-//        case overview
-//        case popularity
-//        case posterPath = "poster_path"
-//        case releaseDate = "release_date"
-//        case video
-//        case voteAverage = "vote_average"
-//        case voteCount = "vote_count"
-//        case budget
-//        case runtime
-//        case genres
-//    }
-
-//    func getDuration() -> String {
-//        guard let runtime = self.runtime else { return "N/A" }
-//        let hours = runtime / 60
-//        let mins = runtime % 60
-//        if hours == 0 {
-//            return "\(mins)m"
-//        }
-//        if mins == 0 {
-//            return "\(hours)h"
-//        }
-//        return "\(hours)h \(mins)m"
-//    }
-
-//    func getReleaseYear() -> String {
-//        return String(releaseDate!.prefix(4))
-//    }
+    
+    func getDuration() -> String {
+        guard let runtime = self.runtime else { return "N/A" }
+        let hours = runtime / 60
+        let mins = runtime % 60
+        if hours == 0 {
+            return "\(mins)m"
+        }
+        if mins == 0 {
+            return "\(hours)h"
+        }
+        return "\(hours)h \(mins)m"
+    }
+    
+    func getReleaseYear() -> String {
+        return String(releaseDate!.prefix(4))
+    }
     func getVoteAverage() -> String {
         return String(format: "%.1f", self.voteAverage!)
     }
-
-//    func getGenres() -> (firstCategory: String, secondCategory: String) {
-//        let firstGenre = genres?.first?.name ?? "Unknown"
-//        let secondGenre = genres?.dropFirst().first?.name ?? "Unknown"
-//        return (firstGenre, secondGenre)
-//    }
+    
+    func getGenres() -> (firstCategory: String, secondCategory: String) {
+        let firstGenre = genres?.first?.name ?? "Unknown"
+        let secondGenre = genres?.dropFirst().first?.name ?? "Unknown"
+        return (firstGenre, secondGenre)
+    }
 }
