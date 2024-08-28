@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Movie: Decodable, Identifiable, Hashable, Equatable {
+struct Movie: Codable, Identifiable {
     
     let title: String?
     let backdropPath: String?
-    private let genreIds: [Int]?
+    let genreIds: [Int]?
     let id: Int
     let originalLanguage: String?
     let originalTitle: String?
@@ -20,11 +20,11 @@ struct Movie: Decodable, Identifiable, Hashable, Equatable {
     let posterPath: String?
     let releaseDate: String?
     let video: Bool?
-    private let voteAverage: Double?
+    let voteAverage: Double?
     let voteCount: Int?
     var budget: Int?
-    private var runtime: Int?
-    private var genres: [Genre]?
+    var runtime: Int?
+    var genres: [Genre]?
     
     
     enum CodingKeys: String, CodingKey {
@@ -47,15 +47,6 @@ struct Movie: Decodable, Identifiable, Hashable, Equatable {
     }
     
     
-    static func == (lhs: Movie, rhs: Movie) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        hasher.combine(title)
-    }
-    
     func getDuration() -> String {
         guard let runtime = self.runtime else { return "N/A" }
         let hours = runtime / 60
@@ -70,9 +61,11 @@ struct Movie: Decodable, Identifiable, Hashable, Equatable {
     }
     
     func getReleaseYear() -> String {
-        return String(releaseDate!.prefix(4))
+        guard let releaseDate = self.releaseDate else { return "N/A" }
+        return String(releaseDate.prefix(4))
     }
     func getVoteAverage() -> String {
+        guard let voteAverage = self.voteAverage else { return "N/A" }
         return String(format: "%.1f", self.voteAverage!)
     }
     

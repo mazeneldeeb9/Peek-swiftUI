@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Peek_swiftUIApp: App {
+    @StateObject private var favoritesHandler = FavoritesHandler()
     var body: some Scene {
         WindowGroup {
            MoviesTabBar()
+                .environmentObject(favoritesHandler)
         }
     }
 }
