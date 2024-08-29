@@ -15,6 +15,8 @@ struct MovieChip: View {
             .foregroundStyle(.white)
             .padding(.horizontal, 14)
             .padding(.vertical, 6)
+            .lineLimit(1)
+            .font(.body)
             .background(.lightPurple)
             .clipShape(RoundedRectangle(cornerRadius: .infinity))
     }
