@@ -11,6 +11,10 @@ import CoreData
 
 class FavoritesHandler: ObservableObject {
     @Published var favoritesMovies: Set<Movie> = []
+    @Published var hasError: Bool = false
+    @Published var isLoading: Bool = false
+    @Published var isLoaded: Bool = false
+    @Published var errorMessage: String?
     private var cancellables = Set<AnyCancellable>()
     private let context: NSManagedObjectContext
     
@@ -29,22 +33,54 @@ class FavoritesHandler: ObservableObject {
         return favoriteMovie
     }
     
+    private func handleError(_ error: Error) {
+        isLoading = false
+        hasError = true
+        errorMessage = error.localizedDescription
+    }
+    
+    func loadFavorites() {
+        let fetchRequest: NSFetchRequest<FavoriteMovie> = FavoriteMovie.fetchRequest()
+        defer {
+            isLoading = false
+        }
+        do {
+            isLoading = true
+            let savedMovies = try context.fetch(fetchRequest)
+            favoritesMovies = Set(savedMovies.map { Movie(favoriteMovie: $0) })
+            isLoaded = true
+        } catch {
+            isLoaded = false
+            handleError(error)
+
+        }
+    }
+    
     func add(_ movie: Movie)  {
         let favoriteMovie = transform(movie)
+        defer {
+            isLoading = false
+        }
         do {
+            isLoading = true;
+            hasError = false;
             try context.save()
             favoritesMovies.insert(movie)
         } catch {
             context.delete(favoriteMovie)
-            
+            handleError(error)
         }
     }
     
     func remove(_ movie: Movie) {
         let fetchRequest: NSFetchRequest<FavoriteMovie> = FavoriteMovie.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", movie.id)
-        
+        defer {
+            isLoading = false
+        }
         do {
+            isLoading = true;
+            hasError = false;
             let results = try context.fetch(fetchRequest)
             if let favoriteMovie = results.first {
                 context.delete(favoriteMovie)
@@ -52,7 +88,7 @@ class FavoritesHandler: ObservableObject {
                 favoritesMovies.remove(movie)
             }
         } catch {
-
+            handleError(error)
         }
     }
     
@@ -67,14 +103,5 @@ class FavoritesHandler: ObservableObject {
     
     
     
-    private func loadFavorites() {
-        let fetchRequest: NSFetchRequest<FavoriteMovie> = FavoriteMovie.fetchRequest()
-        
-        do {
-            let savedMovies = try context.fetch(fetchRequest)
-            favoritesMovies = Set(savedMovies.map { Movie(favoriteMovie: $0) })
-        } catch {
-            print("Failed to load favorite movies: \(error)")
-        }
-    }
+   
 }

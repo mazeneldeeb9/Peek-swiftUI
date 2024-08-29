@@ -59,6 +59,7 @@ struct MovieCard: View {
                 )
             )
         }
+        .favoriteError(isPresented: $favoritesHandler.hasError, message: favoritesHandler.errorMessage ?? "try again")
         .frame(width: Constants.movieCardWidth, height: Constants.movieCardheight)
         .background(
             AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/\(movie.posterPath!)")) { image in

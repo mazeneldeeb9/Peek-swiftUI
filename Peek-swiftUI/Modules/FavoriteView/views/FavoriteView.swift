@@ -11,6 +11,13 @@ struct FavoriteView: View {
     @EnvironmentObject var favoritesHandler: FavoritesHandler
 
     var body: some View {
+        if favoritesHandler.isLoading {
+            LoadingView()
+        } else if !favoritesHandler.isLoaded {
+            ErrorView(callAgain: {
+                favoritesHandler.loadFavorites()
+            }, errorMessage: favoritesHandler.errorMessage ?? "Someting went wrong")
+        }
             VStack {
                 HStack {
                     Text("Favorites")

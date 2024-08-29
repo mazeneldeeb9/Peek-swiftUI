@@ -27,7 +27,6 @@ struct CategoryListView: View {
                             MovieCard(movie: movie)
                         }
                         )
-                        
                     }
                     .listStyle(.plain)
                 }

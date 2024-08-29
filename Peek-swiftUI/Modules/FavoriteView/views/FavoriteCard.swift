@@ -60,6 +60,7 @@ struct FavoriteCard: View {
                     .padding(.bottom, 60)
                 }
             }
+            .favoriteError(isPresented: $favoritesHandler.hasError, message: favoritesHandler.errorMessage ?? "try again")
             .frame(height: 200)
             .padding()
         }
