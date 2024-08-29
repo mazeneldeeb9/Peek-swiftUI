@@ -17,6 +17,7 @@
 		E853D6AF2C7F779400298CDA /* FavoritesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853D6AE2C7F779400298CDA /* FavoritesHandler.swift */; };
 		E853D6B12C7F79D500298CDA /* Movie+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853D6B02C7F79D500298CDA /* Movie+Hashable.swift */; };
 		E853D6B72C7F88B000298CDA /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853D6B62C7F88B000298CDA /* Handler.swift */; };
+		E853D6B92C80689700298CDA /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E853D6B82C80689700298CDA /* Launch Screen.storyboard */; };
 		E88147DD2C7DD532002443BA /* RemoveFocusOnTapModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88147DC2C7DD532002443BA /* RemoveFocusOnTapModifier.swift */; };
 		E88147E12C7DF617002443BA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88147E02C7DF617002443BA /* NetworkManager.swift */; };
 		E88147E32C7DF7FD002443BA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88147E22C7DF7FD002443BA /* Category.swift */; };
@@ -30,7 +31,6 @@
 		E8FDE0FC2C7783D800128E2A /* Peek_swiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE0FB2C7783D800128E2A /* Peek_swiftUIApp.swift */; };
 		E8FDE1002C7783DA00128E2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FDE0FF2C7783DA00128E2A /* Assets.xcassets */; };
 		E8FDE1032C7783DA00128E2A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FDE1022C7783DA00128E2A /* Preview Assets.xcassets */; };
-		E8FDE10B2C7797A000128E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */; };
 		E8FDE1342C7A3A3200128E2A /* WelcomeBackTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1332C7A3A3200128E2A /* WelcomeBackTopView.swift */; };
 		E8FDE1382C7A4AC900128E2A /* View+RemoveFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1372C7A4AC900128E2A /* View+RemoveFocus.swift */; };
 		E8FDE13A2C7A4B4600128E2A /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FDE1392C7A4B4600128E2A /* SearchTextField.swift */; };
@@ -53,6 +53,7 @@
 		E853D6AE2C7F779400298CDA /* FavoritesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHandler.swift; sourceTree = "<group>"; };
 		E853D6B02C7F79D500298CDA /* Movie+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Hashable.swift"; sourceTree = "<group>"; };
 		E853D6B62C7F88B000298CDA /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
+		E853D6B82C80689700298CDA /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E88147DC2C7DD532002443BA /* RemoveFocusOnTapModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFocusOnTapModifier.swift; sourceTree = "<group>"; };
 		E88147E02C7DF617002443BA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E88147E22C7DF7FD002443BA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		E8FDE0FF2C7783DA00128E2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8FDE1022C7783DA00128E2A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E8FDE1092C77969100128E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8FDE1332C7A3A3200128E2A /* WelcomeBackTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeBackTopView.swift; sourceTree = "<group>"; };
 		E8FDE1372C7A4AC900128E2A /* View+RemoveFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+RemoveFocus.swift"; sourceTree = "<group>"; };
 		E8FDE1392C7A4B4600128E2A /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				E853D6AE2C7F779400298CDA /* FavoritesHandler.swift */,
-					);
+			);
 			path = Handler;
 			sourceTree = "<group>";
 		};
@@ -222,6 +222,7 @@
 		E8FDE0EF2C7783D800128E2A = {
 			isa = PBXGroup;
 			children = (
+				E853D6B82C80689700298CDA /* Launch Screen.storyboard */,
 				E8FDE0FA2C7783D800128E2A /* Peek-swiftUI */,
 				E8FDE0F92C7783D800128E2A /* Products */,
 			);
@@ -246,7 +247,6 @@
 				E8FDE0FB2C7783D800128E2A /* Peek_swiftUIApp.swift */,
 				E8FDE0FF2C7783DA00128E2A /* Assets.xcassets */,
 				E8FDE1012C7783DA00128E2A /* Preview Content */,
-				E8FDE10A2C7797A000128E2A /* LaunchScreen.storyboard */,
 			);
 			path = "Peek-swiftUI";
 			sourceTree = "<group>";
@@ -358,7 +358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FDE10B2C7797A000128E2A /* LaunchScreen.storyboard in Resources */,
+				E853D6B92C80689700298CDA /* Launch Screen.storyboard in Resources */,
 				E8FDE1032C7783DA00128E2A /* Preview Assets.xcassets in Resources */,
 				E8FDE1002C7783DA00128E2A /* Assets.xcassets in Resources */,
 			);
@@ -542,7 +542,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Peek;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -575,7 +575,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Peek;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;

@@ -66,7 +66,7 @@ struct Movie: Codable, Identifiable {
     }
     func getVoteAverage() -> String {
         guard let voteAverage = self.voteAverage else { return "N/A" }
-        return String(format: "%.1f", self.voteAverage!)
+        return String(format: "%.1f", voteAverage)
     }
     
     func getGenres() -> (firstCategory: String, secondCategory: String) {
