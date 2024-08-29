@@ -26,6 +26,24 @@ struct Movie: Codable, Identifiable {
     var runtime: Int?
     var genres: [Genre]?
     
+    init(favoriteMovie: FavoriteMovie) {
+            self.title = favoriteMovie.title
+            self.backdropPath = nil
+            self.genreIds = []
+            self.id = Int(favoriteMovie.id)
+            self.originalLanguage = nil
+            self.originalTitle = nil
+            self.overview = nil
+            self.popularity = nil
+            self.posterPath = favoriteMovie.posterPath
+            self.releaseDate = nil
+            self.video = nil
+            self.voteAverage = nil
+            self.voteCount = Int(favoriteMovie.voteCount)
+            self.budget = nil
+            self.runtime = nil
+            self.genres = nil
+        }
     
     enum CodingKeys: String, CodingKey {
         case title

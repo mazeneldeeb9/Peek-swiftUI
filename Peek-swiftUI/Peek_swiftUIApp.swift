@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
-
+import CoreData
 @main
 struct Peek_swiftUIApp: App {
-    @StateObject private var favoritesHandler = FavoritesHandler()
+    static let persistenceController = PersistenceController.shared
+    @StateObject private var favoritesHandler = FavoritesHandler(context: persistenceController.container.viewContext)
     var body: some Scene {
         WindowGroup {
            MoviesTabBar()
