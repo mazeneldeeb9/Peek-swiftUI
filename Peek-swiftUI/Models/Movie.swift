@@ -38,7 +38,7 @@ struct Movie: Codable, Identifiable {
             self.posterPath = favoriteMovie.posterPath
             self.releaseDate = nil
             self.video = nil
-            self.voteAverage = nil
+        self.voteAverage = favoriteMovie.voteAverage
             self.voteCount = Int(favoriteMovie.voteCount)
             self.budget = nil
             self.runtime = nil
@@ -95,5 +95,9 @@ struct Movie: Codable, Identifiable {
     func getVoteCount() -> String {
         guard let voteCount = self.voteCount else {return "N/A"}
         return "(\(voteCount))"
+    }
+    func formatVoteAverage() -> CGFloat {
+        guard let voteAverage = self.voteAverage else {return 0.0}
+        return voteAverage / 2
     }
 }

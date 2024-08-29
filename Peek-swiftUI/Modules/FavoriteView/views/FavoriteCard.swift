@@ -35,7 +35,7 @@ struct FavoriteCard: View {
                             .font(.title2)
                             .foregroundStyle(.white)
                         
-                        StarsRatingView(rating: movie.voteAverage ?? 0.0)
+                        StarsRatingView(rating: movie.formatVoteAverage())
                         
                         Spacer()
                     }

@@ -30,6 +30,7 @@ class FavoritesHandler: ObservableObject {
         favoriteMovie.title = movie.title
         favoriteMovie.posterPath = movie.posterPath
         favoriteMovie.voteCount = Int64(movie.voteCount ?? -1)
+        favoriteMovie.voteAverage = movie.formatVoteAverage()
         return favoriteMovie
     }
     

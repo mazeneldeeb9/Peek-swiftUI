@@ -24,7 +24,7 @@ struct StarsRatingView: View {
                 .foregroundStyle(.gray)
             HStack(spacing: 0) {
                 GeometryReader { geometry in
-                    let width = Constants.valueForWidthOfStars(geometry.size.width, value: rating)
+                    let width = Constants.valueForWidthOfStars(geometry.size.width, value: rating )
                     Rectangle()
                         .frame(width: width, height: geometry.size.height)
                         .foregroundColor(.yellow)
