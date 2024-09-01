@@ -25,7 +25,7 @@ struct MoviesDetailsView: View {
             VStack(alignment: .leading) {
                 MovieTopImage(urlString: "https://image.tmdb.org/t/p/w500/\(handler.movie.posterPath ?? "")")
                 ScrollView {
-                    LazyVStack(alignment: .leading) {
+                    VStack(alignment: .leading) {
                         HStack {
                             Text(handler.movie.title ?? "N/A")
                                 .foregroundStyle(.white)
