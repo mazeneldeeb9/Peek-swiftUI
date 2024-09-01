@@ -9,6 +9,7 @@ import SwiftUI
 
 extension MoviesTabBar {
     func setupColors() {
+        UITabBar.appearance().barTintColor = .mainPurple
         UITabBar.appearance().backgroundColor = .mainPurple
         UITabBar.appearance().unselectedItemTintColor = .inactiveGrey
     }

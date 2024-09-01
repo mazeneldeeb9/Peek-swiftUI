@@ -11,7 +11,7 @@ import Combine
 extension MoviesDetailsView {
     @MainActor
     class Handler: ObservableObject {
-        @Published var movie: Movie! = nil
+        @Published var movie: Movie?
         @Published var isLoading: Bool = false
         @Published var hasError: Bool = false
         @Published var errorMessage: String?
