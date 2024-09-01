@@ -62,12 +62,17 @@ struct Movie: Decodable, Identifiable {
         return String(releaseDate!.prefix(4))
     }
     func getVoteAverage() -> String {
-        return String(format: "%.1f", self.voteAverage!)
+        guard let voteAverage = self.voteAverage else { return "N/A" }
+        return String(format: "%.1f", voteAverage)
     }
     
     func getGenres() -> (firstCategory: String, secondCategory: String) {
         let firstGenre = genres?.first?.name ?? "Unknown"
         let secondGenre = genres?.dropFirst().first?.name ?? "Unknown"
         return (firstGenre, secondGenre)
+    }
+    func getVoteCount() -> String {
+        guard let voteCount = self.voteCount else {return "N/A"}
+        return "(\(voteCount))"
     }
 }

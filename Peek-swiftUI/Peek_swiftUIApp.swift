@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct Peek_swiftUIApp: App {
+
     var body: some Scene {
         WindowGroup {
            MoviesTabBar()
