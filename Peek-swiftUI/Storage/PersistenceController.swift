@@ -1,20 +1,13 @@
-//
-//  PersistenceController.swift
-//  Peek-swiftUI
-//
-//  Created by mazen eldeeb on 29/08/2024.
-//
-
 import Foundation
 import CoreData
 
-struct PersistenceController {
+final class PersistenceController {
     static let shared = PersistenceController()
 
     let container: NSPersistentContainer
 
-    init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Database") 
+    private init(inMemory: Bool = false) {
+        container = NSPersistentContainer(name: "Database")
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
