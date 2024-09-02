@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CategoryListView: View {
+    let favoriteUseCase: FavoriteUseCase
     let category: MoviesResponse
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,14 +25,14 @@ struct CategoryListView: View {
                     ForEach(category.results, id: \.id) { movie in
                         NavigationLink(destination: MoviesDetailsView(movieId: movie.id),
                                        label: {
-                            MovieCard(movie: movie)
+                            MovieCard(movie: movie, favoriteUseCase: favoriteUseCase)
                         }
                         )
                     }
                     .listStyle(.plain)
                 }
             }
-            .frame(height: Constants.movieCardheight,
+            .frame(height: Constants.movieCardHeight,
                    alignment: .leading)
         }
         .background(.mainPurple)

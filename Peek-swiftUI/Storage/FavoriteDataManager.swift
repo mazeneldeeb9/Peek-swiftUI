@@ -8,7 +8,9 @@
 import Foundation
 import CoreData
 
-class FavoritesDataManager {
+class FavoritesDataManager: ObservableObject {
+    var favoritesMovies: Set<Movie> = []
+    
     private let context: NSManagedObjectContext
 
     init() {
@@ -32,6 +34,7 @@ class FavoritesDataManager {
     
     func saveFavorite(movie: Movie) throws -> FavoriteMovie {
         let favoriteMovie = transform(movie)
+        favoritesMovies.insert(movie)
         try context.save()
         return favoriteMovie
     }
@@ -43,6 +46,7 @@ class FavoritesDataManager {
         if let favoriteMovie = results.first {
             context.delete(favoriteMovie)
             try context.save()
+            favoritesMovies.remove(movie)
         }
     }
 }

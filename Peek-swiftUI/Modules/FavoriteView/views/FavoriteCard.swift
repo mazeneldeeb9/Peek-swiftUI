@@ -2,8 +2,7 @@ import SwiftUI
 
 struct FavoriteCard: View {
     let movie: Movie
-    
-    @EnvironmentObject var favoritesHandler: FavoritesHandler
+    @State var favoriteUseCase: FavoriteUseCase
     @State private var isRemoved: Bool = false
     
     var body: some View {
@@ -48,7 +47,7 @@ struct FavoriteCard: View {
                         withAnimation(.easeOut(duration: 0.3)) {
                             isRemoved = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                favoritesHandler.remove(movie)
+                                favoriteUseCase.remove(movie)
                             }
                         }
                     }) {
@@ -60,7 +59,7 @@ struct FavoriteCard: View {
                     .padding(.bottom, 60)
                 }
             }
-            .favoriteError(isPresented: $favoritesHandler.hasError, message: favoritesHandler.errorMessage ?? "try again")
+            .favoriteError(isPresented: $favoriteUseCase.hasError, message: favoriteUseCase.errorMessage ?? "try again")
             .frame(height: 200)
             .padding()
         }

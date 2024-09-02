@@ -1,11 +1,12 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var searchText: String = ""
-    @StateObject private var handler: Handler = .init()
     
+    @StateObject private var handler: Handler = .init()
+
+    @State var searchText: String = ""
+
     var body: some View {
-        Group {
             if handler.isLoading {
                 LoadingView()
             } else if handler.hasError {
@@ -24,7 +25,7 @@ struct MainView: View {
                         
                         SearchTextField(searchText: $searchText)
                         List(handler.categories, id: \.categoryTitle) { moviesResponse in
-                            CategoryListView(category: moviesResponse)
+                            CategoryListView(favoriteUseCase: handler.favoriteUseCase, category: moviesResponse )
                                 .padding(.top, 16)
                                 .frame(maxWidth: .infinity)
                                 .listRowInsets(EdgeInsets())
@@ -41,7 +42,7 @@ struct MainView: View {
             }
             
         }
-    }
+    
 }
 
 #Preview {

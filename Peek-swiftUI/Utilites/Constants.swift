@@ -9,7 +9,7 @@ import Foundation
 
 struct Constants {
     static let movieCardWidth: CGFloat = 230
-    static let movieCardheight: CGFloat = movieCardWidth * 14 / 17
+    static let movieCardHeight: CGFloat = movieCardWidth * 14 / 17
     static let starSize: CGFloat = 12
     static func valueForWidthOfStars(_ width: CGFloat, value: CGFloat) -> CGFloat {
         return value * width / 5

@@ -1,16 +1,10 @@
-//
-//  MovieListCell.swift
-//  Peek-swiftUI
-//
-//  Created by mazen eldeeb on 24/08/2024.
-//
-
 import SwiftUI
 
 struct MovieCard: View {
     let movie: Movie
+    let favoriteUseCase: FavoriteUseCase
     
-    @EnvironmentObject var favoritesHandler: FavoritesHandler
+    @State private var isFavorite: Bool = false
     
     var body: some View {
         VStack {
@@ -24,20 +18,22 @@ struct MovieCard: View {
                         .lineLimit(1)
                     Spacer()
                     Button(action: {
-                        if(favoritesHandler.contains(movie)) {
-                            favoritesHandler.remove(movie)
+                        if isFavorite {
+                            favoriteUseCase.remove(movie)
                         } else {
-                            favoritesHandler.add(movie)
+                            favoriteUseCase.add(movie)
                         }
-                    }
-                    ) {
-                        Image(systemName: favoritesHandler.contains(movie) ? "heart.fill" : "heart")
-                            .foregroundColor(favoritesHandler.contains(movie) ? .red : .gray)
+                        isFavorite.toggle()
+                    }) {
+                        Image(systemName: isFavorite ? "heart.fill" : "heart")
+                            .foregroundColor(isFavorite ? .red : .gray)
                             .font(.system(size: 24))
                     }
                     .buttonStyle(PlainButtonStyle())
-                }.padding([.leading, .trailing], 16)
-                    .padding(.top, 8)
+                }
+                .padding([.leading, .trailing], 16)
+                .padding(.top, 8)
+                
                 HStack {
                     Image(systemName: "hand.thumbsup.fill")
                         .foregroundStyle(.lightYellow)
@@ -46,10 +42,11 @@ struct MovieCard: View {
                         .foregroundStyle(.lightYellow)
                         .bold()
                     Spacer()
-                }.padding([.leading, .trailing], 16)
-                    .padding(.bottom, 8)
+                }
+                .padding([.leading, .trailing], 16)
+                .padding(.bottom, 8)
             }
-            .background(.lightPurple.opacity(0.98))
+            .background(Color.lightPurple.opacity(0.98))
             .clipShape(
                 .rect(
                     topLeadingRadius: 0,
@@ -59,22 +56,23 @@ struct MovieCard: View {
                 )
             )
         }
-        .favoriteError(isPresented: $favoritesHandler.hasError, message: favoritesHandler.errorMessage ?? "try again")
-        .frame(width: Constants.movieCardWidth, height: Constants.movieCardheight)
+        .frame(width: Constants.movieCardWidth, height: Constants.movieCardHeight)
         .background(
-            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/\(movie.posterPath!)")) { image in
+            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/\(movie.posterPath ?? "")")) { image in
                 image
                     .resizable()
                     .scaledToFill()
-                    .frame(width: Constants.movieCardWidth, height: Constants.movieCardheight)
+                    .frame(width: Constants.movieCardWidth, height: Constants.movieCardHeight)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
-            }  placeholder: {
+            } placeholder: {
                 VStack {
                     ProgressView()
                     Spacer()
                 }
             }
         )
+        .onAppear {
+            isFavorite = favoriteUseCase.contains(movie)
+        }
     }
 }
-

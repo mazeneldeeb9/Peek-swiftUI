@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct FavoriteView: View {
-    @EnvironmentObject var favoritesHandler: FavoritesHandler
-
+    let handler: Handler = .init()
     var body: some View {
-        if favoritesHandler.isLoading {
+        if handler.favoriteUseCase.isLoading {
             LoadingView()
-        } else if !favoritesHandler.isLoaded {
+        } else if !handler.favoriteUseCase.isLoaded {
             ErrorView(callAgain: {
-                favoritesHandler.loadFavorites()
-            }, errorMessage: favoritesHandler.errorMessage ?? "Someting went wrong")
-        }
+                handler.favoriteUseCase.loadFavorites()
+            }, errorMessage: handler.favoriteUseCase.errorMessage ?? "Someting went wrong")
+        } else {
             VStack {
                 HStack {
                     Text("Favorites")
@@ -28,9 +27,8 @@ struct FavoriteView: View {
                     Spacer()
                 }
                 
-                List(Array(favoritesHandler.favoritesMovies), id: \.id) {movie in
-                    FavoriteCard(movie: movie)
-                        .frame(maxWidth: .infinity)
+                List(Array(handler.favoriteUseCase.favoritesMovies), id: \.id) {movie in
+                    FavoriteCard(movie: movie, favoriteUseCase: handler.favoriteUseCase)
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
                 }.listStyle(.plain)
@@ -38,7 +36,9 @@ struct FavoriteView: View {
             .padding(.bottom)
             .background(.mainPurple)
             
-          
+            
+        }
+        
     }
 }
 
