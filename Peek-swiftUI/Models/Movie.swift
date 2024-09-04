@@ -98,6 +98,6 @@ struct Movie: Codable, Identifiable {
     }
     func formatVoteAverage() -> CGFloat {
         guard let voteAverage = self.voteAverage else {return 0.0}
-        return (voteAverage * 2).rounded() / 2
+        return voteAverage / 2
     }
 }

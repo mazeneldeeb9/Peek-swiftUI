@@ -1,13 +1,14 @@
 //
-//  FavoriteUseCase.swift
+//  UserFavorites.swift
 //  Peek-swiftUI
 //
-//  Created by mazen eldeeb on 02/09/2024.
+//  Created by mazen eldeeb on 04/09/2024.
 //
 
 import Foundation
 
-class FavoriteUseCase: ObservableObject {
+
+class UserFavorites: ObservableObject {
     @Published var favoritesMovies: Set<Movie> = []
     @Published var hasError: Bool = false
     @Published var isLoading: Bool = false
@@ -25,21 +26,22 @@ class FavoriteUseCase: ObservableObject {
         errorMessage = error.localizedDescription
     }
     func loadFavorites() {
-        defer {
-            isLoading = false
-        }
-        do {
-            isLoading = true
-            hasError = false
-            let savedMovies = try dataManager.fetchFavorites()
-            favoritesMovies = Set(savedMovies.map { Movie(favoriteMovie: $0) })
-            isLoaded = true
-        } catch {
-            isLoaded = false
-            handleError(error)
-        }
+            defer {
+                isLoading = false
+            }
+            do {
+                isLoading = true
+                hasError = false
+                let savedMovies = try dataManager.fetchFavorites()
+                favoritesMovies = Set(savedMovies.map { Movie(favoriteMovie: $0) })
+                isLoaded = true
+            } catch {
+                isLoaded = false
+                handleError(error)
+            }
+       
     }
-
+    
     func add(_ movie: Movie) {
         do {
             _ = try dataManager.saveFavorite(movie: movie)
@@ -61,4 +63,5 @@ class FavoriteUseCase: ObservableObject {
     func contains(_ movie: Movie) -> Bool {
         return favoritesMovies.contains(movie)
     }
+    
 }

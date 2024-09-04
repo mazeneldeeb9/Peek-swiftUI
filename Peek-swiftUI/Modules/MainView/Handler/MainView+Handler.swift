@@ -15,16 +15,12 @@ extension MainView {
         @Published var isLoading: Bool = false
         @Published var hasError: Bool = false
         @Published var errorMessage: String?
-        @Published var favoriteUseCase = FavoriteUseCase()
         private let moviesAPI: MoviesAPI = MoviesAPI()
         private var storage: Set<AnyCancellable> = []
         private var favoritesMovies: Set<Movie> = []
         
         
         init() {
-            if favoriteUseCase.favoritesMovies.count == 0 {
-                favoriteUseCase.loadFavorites()
-            }
             fetchCategories()
         }
         

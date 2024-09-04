@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
-    
     @StateObject private var handler: Handler = .init()
-
     @State var searchText: String = ""
 
     var body: some View {
@@ -25,7 +23,7 @@ struct MainView: View {
                         
                         SearchTextField(searchText: $searchText)
                         List(handler.categories, id: \.categoryTitle) { moviesResponse in
-                            CategoryListView(favoriteUseCase: handler.favoriteUseCase, category: moviesResponse )
+                            CategoryListView(category: moviesResponse)
                                 .padding(.top, 16)
                                 .frame(maxWidth: .infinity)
                                 .listRowInsets(EdgeInsets())

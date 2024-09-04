@@ -2,9 +2,8 @@ import SwiftUI
 
 struct MovieCard: View {
     let movie: Movie
-    let favoriteUseCase: FavoriteUseCase
     
-    @State private var isFavorite: Bool = false
+    @EnvironmentObject var userFavorites: UserFavorites
     
     var body: some View {
         VStack {
@@ -18,15 +17,14 @@ struct MovieCard: View {
                         .lineLimit(1)
                     Spacer()
                     Button(action: {
-                        if isFavorite {
-                            favoriteUseCase.remove(movie)
+                        if userFavorites.contains(movie) {
+                            userFavorites.remove(movie)
                         } else {
-                            favoriteUseCase.add(movie)
+                            userFavorites.add(movie)
                         }
-                        isFavorite.toggle()
                     }) {
-                        Image(systemName: isFavorite ? "heart.fill" : "heart")
-                            .foregroundColor(isFavorite ? .red : .gray)
+                        Image(systemName: userFavorites.contains(movie) ? "heart.fill" : "heart")
+                            .foregroundColor( userFavorites.contains(movie) ? .red : .gray)
                             .font(.system(size: 24))
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -71,8 +69,6 @@ struct MovieCard: View {
                 }
             }
         )
-        .onAppear {
-            isFavorite = favoriteUseCase.contains(movie)
-        }
+        
     }
 }

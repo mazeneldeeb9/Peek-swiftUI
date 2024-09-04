@@ -12,25 +12,25 @@ class FavoritesDataManager: ObservableObject {
     var favoritesMovies: Set<Movie> = []
     
     private let context: NSManagedObjectContext
-
+    
     init() {
         self.context = PersistenceController.shared.viewContext
     }
-
+    
     func fetchFavorites() throws -> [FavoriteMovie] {
         let fetchRequest: NSFetchRequest<FavoriteMovie> = FavoriteMovie.fetchRequest()
         return try context.fetch(fetchRequest)
     }
     
     private func transform(_ movie: Movie) -> FavoriteMovie {
-           let favoriteMovie = FavoriteMovie(context: context)
-           favoriteMovie.id = Int64(movie.id)
-           favoriteMovie.title = movie.title
-           favoriteMovie.posterPath = movie.posterPath
-           favoriteMovie.voteCount = Int64(movie.voteCount ?? -1)
-           favoriteMovie.voteAverage = movie.formatVoteAverage()
-           return favoriteMovie
-       }
+        let favoriteMovie = FavoriteMovie(context: context)
+        favoriteMovie.id = Int64(movie.id)
+        favoriteMovie.title = movie.title
+        favoriteMovie.posterPath = movie.posterPath
+        favoriteMovie.voteCount = Int64(movie.voteCount ?? -1)
+        favoriteMovie.voteAverage = movie.voteAverage ?? 0
+        return favoriteMovie
+    }
     
     func saveFavorite(movie: Movie) throws -> FavoriteMovie {
         let favoriteMovie = transform(movie)
@@ -38,7 +38,7 @@ class FavoritesDataManager: ObservableObject {
         try context.save()
         return favoriteMovie
     }
-
+    
     func deleteFavorite(movie: Movie) throws {
         let fetchRequest: NSFetchRequest<FavoriteMovie> = FavoriteMovie.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", movie.id)
