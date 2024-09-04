@@ -10,13 +10,18 @@ import Foundation
 struct MoviesResponse: Decodable {
     var categoryTitle: String?
     let page: Int
-    let results: [Movie]
+    let results: [MovieDTO]
     let totalPages: Int
     let totalResults: Int
+    
     
     private enum CodingKeys: String, CodingKey {
         case page, results
         case totalPages = "total_pages"
         case totalResults = "total_results"
+    }
+    
+    func getMovies() -> [Movie] {
+        return self.results.map { $0.toMovie() }
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Codable, Identifiable {
+struct Movie: Identifiable {
     
     let title: String?
     let backdropPath: String?
@@ -27,42 +27,45 @@ struct Movie: Codable, Identifiable {
     var genres: [Genre]?
     
     init(favoriteMovie: FavoriteMovie) {
-            self.title = favoriteMovie.title
-            self.backdropPath = nil
-            self.genreIds = []
-            self.id = Int(favoriteMovie.id)
-            self.originalLanguage = nil
-            self.originalTitle = nil
-            self.overview = nil
-            self.popularity = nil
-            self.posterPath = favoriteMovie.posterPath
-            self.releaseDate = nil
-            self.video = nil
+        self.title = favoriteMovie.title
+        self.backdropPath = nil
+        self.genreIds = []
+        self.id = Int(favoriteMovie.id)
+        self.originalLanguage = nil
+        self.originalTitle = nil
+        self.overview = nil
+        self.popularity = nil
+        self.posterPath = favoriteMovie.posterPath
+        self.releaseDate = nil
+        self.video = nil
         self.voteAverage = favoriteMovie.voteAverage
-            self.voteCount = Int(favoriteMovie.voteCount)
-            self.budget = nil
-            self.runtime = nil
-            self.genres = nil
-        }
-    
-    enum CodingKeys: String, CodingKey {
-        case title
-        case backdropPath = "backdrop_path"
-        case genreIds = "genre_ids"
-        case id
-        case originalLanguage = "original_language"
-        case originalTitle = "original_title"
-        case overview
-        case popularity
-        case posterPath = "poster_path"
-        case releaseDate = "release_date"
-        case video
-        case voteAverage = "vote_average"
-        case voteCount = "vote_count"
-        case budget
-        case runtime
-        case genres
+        self.voteCount = Int(favoriteMovie.voteCount)
+        self.budget = nil
+        self.runtime = nil
+        self.genres = nil
     }
+    
+    init(title: String?, backdropPath: String?, genreIds: [Int]?, id: Int, originalLanguage: String?, originalTitle: String?, overview: String?, popularity: Double?, posterPath: String?, releaseDate: String?, video: Bool?, voteAverage: Double?, voteCount: Int?, budget: Int?, runtime: Int?, genres: [Genre]?) {
+        self.title = title
+        self.backdropPath = backdropPath
+        self.genreIds = genreIds
+        self.id = id
+        self.originalLanguage = originalLanguage
+        self.originalTitle = originalTitle
+        self.overview = overview
+        self.popularity = popularity
+        self.posterPath = posterPath
+        self.releaseDate = releaseDate
+        self.video = video
+        self.voteAverage = voteAverage
+        self.voteCount = voteCount
+        self.budget = budget
+        self.runtime = runtime
+        self.genres = genres
+    }
+    
+    
+    
     
     
     func getDuration() -> String {

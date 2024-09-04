@@ -15,7 +15,7 @@ struct MoviesAPI {
     }
     
     
-    func getMovieDetails(of movieId: Int) -> AnyPublisher<Movie, NetworkError> {
+    func getMovieDetails(of movieId: Int) -> AnyPublisher<MovieDTO, NetworkError> {
         return networkManager.makeRequest(urlExtension: "\(movieId)")
     }
     

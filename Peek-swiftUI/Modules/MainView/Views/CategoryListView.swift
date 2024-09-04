@@ -21,7 +21,7 @@ struct CategoryListView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    ForEach(category.results, id: \.id) { movie in
+                    ForEach(category.getMovies(), id: \.id) { movie in
                         NavigationLink(destination: MoviesDetailsView(movieId: movie.id),
                                        label: {
                             MovieCard(movie: movie)

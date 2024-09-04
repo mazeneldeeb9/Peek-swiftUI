@@ -39,7 +39,7 @@ extension MoviesDetailsView {
                         break
                     }
                 } receiveValue: { [weak self] movie in
-                    self?.movie = movie
+                    self?.movie = movie.toMovie()
                 }
                 .store(in: &storage)
         }
