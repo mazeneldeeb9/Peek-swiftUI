@@ -10,7 +10,7 @@ struct MainView: View {
             } else if handler.hasError {
                 ErrorView(
                     callAgain: {
-                        handler.fetchCategories()},
+                        handler.loadCategories()},
                     errorMessage: handler.errorMessage ?? "Something went wrong"
                 )
             } else {

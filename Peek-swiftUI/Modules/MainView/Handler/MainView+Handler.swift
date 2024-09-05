@@ -15,13 +15,11 @@ extension MainView {
         @Published var isLoading: Bool = false
         @Published var hasError: Bool = false
         @Published var errorMessage: String?
-        private let moviesAPI: MoviesAPI = MoviesAPI()
-        private var storage: Set<AnyCancellable> = []
-        private var favoritesMovies: Set<Movie> = []
-        
+        private var moviesUsecase = MoviesUsecase()
+
         
         init() {
-            fetchCategories()
+            loadCategories()
         }
         
         private func handleError(_ error: Error) {
@@ -30,41 +28,20 @@ extension MainView {
             errorMessage = error.localizedDescription
         }
         
-        func fetchCategories() {
-            isLoading = true
-            hasError = false
-            let categoriesToFetch: [(Category, String)] = [
-                (.nowPlaying, "Now Playing"),
-                (.popular, "Popular"),
-                (.topRated, "Top Rated"),
-            ]
-            let publishers = categoriesToFetch.map { category, title in
-                moviesAPI.getMovies(for: category)
-                    .map { response -> MoviesResponse in
-                        var updatedResponse = response
-                        updatedResponse.categoryTitle = title
-                        return updatedResponse
+        func loadCategories() {
+                isLoading = true
+                moviesUsecase.fetchCategories(of: [(Category.popular, "Popular"), (Category.topRated, "Top Rated")]) { [weak self] result in
+                    DispatchQueue.main.async {
+                        self?.isLoading = false
+                        switch result {
+                        case .success(let responses):
+                            self?.categories = responses
+                        case .failure(let error):
+                            self?.handleError(error)
+                        }
                     }
-                    .eraseToAnyPublisher()
-            }
-            
-            Publishers.MergeMany(publishers)
-                .collect()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] completion in
-                    self?.isLoading = false
-                    switch completion {
-                    case .failure(let error):
-                        self?.hasError = true
-                        self?.errorMessage = error.localizedDescription
-                    case .finished:
-                        break
-                    }
-                } receiveValue: { [weak self] responses in
-                    self?.categories = responses
                 }
-                .store(in: &storage)
-        }
+            }
         
 
      
