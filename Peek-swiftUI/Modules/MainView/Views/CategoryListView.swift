@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CategoryListView: View {
-    let category: MoviesResponse
+    let category: Movies
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(category.categoryTitle ?? "Unkown")
+                Text(category.title)
                     .bold()
                     .font(.title)
                     .foregroundStyle(.white)

@@ -1,10 +1,3 @@
-//
-//  Handler.swift
-//  Peek-swiftUI
-//
-//  Created by mazen eldeeb on 28/08/2024.
-//
-
 import SwiftUI
 import Combine
 
@@ -16,18 +9,18 @@ extension MoviesDetailsView {
         @Published var hasError: Bool = false
         @Published var errorMessage: String?
 
-        private let moviesAPI = MoviesAPI()
-        private var storage = Set<AnyCancellable>()
+        let movieUsecase: MoviesUsecase
+        private var cancellables = Set<AnyCancellable>()
 
-        init(movieId: Int) {
+        init(movieId: Int, moviesUsecase: MoviesUsecase = MoviesUsecase()) {
+            self.movieUsecase = moviesUsecase
             fetchMovieDetails(for: movieId)
         }
 
         func fetchMovieDetails(for movieId: Int) {
             isLoading = true
             hasError = false
-            moviesAPI.getMovieDetails(of: movieId)
-                .receive(on: DispatchQueue.main)
+            movieUsecase.fetchMovieDetails(of: movieId)
                 .sink { [weak self] completion in
                     self?.isLoading = false
                     switch completion {
@@ -41,8 +34,7 @@ extension MoviesDetailsView {
                 } receiveValue: { [weak self] movie in
                     self?.movie = movie
                 }
-                .store(in: &storage)
+                .store(in: &cancellables)
         }
     }
 }
-

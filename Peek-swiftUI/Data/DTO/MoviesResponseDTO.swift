@@ -1,16 +1,17 @@
 //
-//  MoviesResponse.swift
+//  MoviesResponseDTO.swift
 //  Peek-swiftUI
 //
-//  Created by mazen eldeeb on 25/08/2024.
+//  Created by mazen eldeeb on 05/09/2024.
 //
 
 import Foundation
 
-struct MoviesResponse: Decodable {
-    var categoryTitle: String?
+
+struct MoviesResponseDTO: Codable {
+    var category: Category?
     let page: Int
-    let results: [Movie]
+    let results: [MovieDTO]
     let totalPages: Int
     let totalResults: Int
     
@@ -19,4 +20,7 @@ struct MoviesResponse: Decodable {
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
+    
+   
+    
 }

@@ -11,17 +11,16 @@ import Combine
 extension MainView {
     @MainActor
     class Handler: ObservableObject {
-        @Published var categories: [MoviesResponse] = []
+        @Published var categories: [Movies] = []
         @Published var isLoading: Bool = false
         @Published var hasError: Bool = false
         @Published var errorMessage: String?
-        private let moviesAPI: MoviesAPI = MoviesAPI()
-        private var storage: Set<AnyCancellable> = []
-        private var favoritesMovies: Set<Movie> = []
+        let moviesUsecase: MoviesUsecase
+        private var cancellables = Set<AnyCancellable>()
         
-        
-        init() {
-            fetchCategories()
+        init(moviesUsecase: MoviesUsecase = MoviesUsecase()) {
+            self.moviesUsecase = moviesUsecase
+            loadCategories()
         }
         
         private func handleError(_ error: Error) {
@@ -30,47 +29,28 @@ extension MainView {
             errorMessage = error.localizedDescription
         }
         
-        func fetchCategories() {
+        func loadCategories() {
             isLoading = true
-            hasError = false
             let categoriesToFetch: [(Category, String)] = [
                 (.nowPlaying, "Now Playing"),
                 (.popular, "Popular"),
-                (.topRated, "Top Rated"),
-            ]
-            let publishers = categoriesToFetch.map { category, title in
-                moviesAPI.getMovies(for: category)
-                    .map { response -> MoviesResponse in
-                        var updatedResponse = response
-                        updatedResponse.categoryTitle = title
-                        return updatedResponse
-                    }
-                    .eraseToAnyPublisher()
-            }
-            
-            Publishers.MergeMany(publishers)
-                .collect()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] completion in
-                    self?.isLoading = false
-                    switch completion {
+                (.topRated, "Top Rated")
+                ]
+            moviesUsecase.fetchCategories(of: categoriesToFetch)
+                .sink(receiveCompletion: { completionResult in
+                    switch completionResult {
                     case .failure(let error):
-                        self?.hasError = true
-                        self?.errorMessage = error.localizedDescription
+                        self.handleError(error)
                     case .finished:
                         break
                     }
-                } receiveValue: { [weak self] responses in
-                    self?.categories = responses
-                }
-                .store(in: &storage)
+                }, receiveValue: { movies in
+                    self.categories = movies
+                    self.isLoading = false
+                })
+                .store(in: &cancellables)
         }
-        
-
-     
     }
-    
-    
     
 }
 
