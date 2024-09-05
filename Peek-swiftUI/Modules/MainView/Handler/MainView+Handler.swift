@@ -17,12 +17,18 @@ extension MainView {
         @Published var errorMessage: String?
         private let moviesAPI: MoviesAPI = MoviesAPI()
         private var storage: Set<AnyCancellable> = []
+        private var favoritesMovies: Set<Movie> = []
         
         
         init() {
             fetchCategories()
         }
         
+        private func handleError(_ error: Error) {
+            isLoading = false
+            hasError = true
+            errorMessage = error.localizedDescription
+        }
         
         func fetchCategories() {
             isLoading = true
@@ -59,7 +65,12 @@ extension MainView {
                 }
                 .store(in: &storage)
         }
+        
+
+     
     }
+    
+    
     
 }
 

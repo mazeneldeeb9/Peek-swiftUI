@@ -8,26 +8,37 @@
 import SwiftUI
 
 struct FavoriteView: View {
+    @EnvironmentObject var userFavorites: UserFavorites
+    
     var body: some View {
-        VStack {
-            HStack {
-                Text("Favorites")
-                    .bold()
-                    .font(.largeTitle)
-                    .foregroundStyle(.white)
-                    .padding()
-                Spacer()
+        if userFavorites.isLoading {
+            LoadingView()
+        } else if !userFavorites.isLoaded {
+            ErrorView(callAgain: {
+                userFavorites.loadFavorites()
+            }, errorMessage: userFavorites.errorMessage ?? "Someting went wrong")
+        } else {
+            VStack {
+                HStack {
+                    Text("Favorites")
+                        .bold()
+                        .font(.largeTitle)
+                        .foregroundStyle(.white)
+                        .padding()
+                    Spacer()
+                }
+                
+                List(Array(userFavorites.favoritesMovies), id: \.id) {movie in
+                    FavoriteCard(movie: movie)
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
+                }.listStyle(.plain)
             }
-            
-            //                List(movies, id: \.id) {movie in
-            //                    FavoriteCard(movie: movie)
-            //                        .frame(maxWidth: .infinity)
-            //                        .listRowInsets(EdgeInsets())
-            //                        .listRowBackground(Color.clear)
-            //                }.listStyle(.plain)
-            //            }.background(.mainPurple)
-            
+            .padding(.bottom)
+            .background(.mainPurple)
         }
+        
+        
     }
 }
 

@@ -12,7 +12,7 @@ struct CategoryListView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(category.categoryTitle ?? "N/A")
+                Text(category.categoryTitle ?? "Unkown")
                     .bold()
                     .font(.title)
                     .foregroundStyle(.white)
@@ -27,12 +27,11 @@ struct CategoryListView: View {
                             MovieCard(movie: movie)
                         }
                         )
-                        
                     }
                     .listStyle(.plain)
                 }
             }
-            .frame(height: Constants.movieCardheight,
+            .frame(height: Constants.movieCardHeight,
                    alignment: .leading)
         }
         .background(.mainPurple)
@@ -42,7 +41,6 @@ struct CategoryListView: View {
     }
     
 }
-
 
 
 

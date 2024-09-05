@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct Movie: Decodable, Identifiable {
+struct Movie: Codable, Identifiable {
+    
     let title: String?
     let backdropPath: String?
-    private let genreIds: [Int]?
+    let genreIds: [Int]?
     let id: Int
     let originalLanguage: String?
     let originalTitle: String?
@@ -22,9 +23,27 @@ struct Movie: Decodable, Identifiable {
     let voteAverage: Double?
     let voteCount: Int?
     var budget: Int?
-    private var runtime: Int?
-    private var genres: [Genre]?
+    var runtime: Int?
+    var genres: [Genre]?
     
+    init(favoriteMovie: FavoriteMovie) {
+            self.title = favoriteMovie.title
+            self.backdropPath = nil
+            self.genreIds = []
+            self.id = Int(favoriteMovie.id)
+            self.originalLanguage = nil
+            self.originalTitle = nil
+            self.overview = nil
+            self.popularity = nil
+            self.posterPath = favoriteMovie.posterPath
+            self.releaseDate = nil
+            self.video = nil
+        self.voteAverage = favoriteMovie.voteAverage
+            self.voteCount = Int(favoriteMovie.voteCount)
+            self.budget = nil
+            self.runtime = nil
+            self.genres = nil
+        }
     
     enum CodingKeys: String, CodingKey {
         case title
@@ -45,6 +64,7 @@ struct Movie: Decodable, Identifiable {
         case genres
     }
     
+    
     func getDuration() -> String {
         guard let runtime = self.runtime else { return "N/A" }
         let hours = runtime / 60
@@ -59,7 +79,8 @@ struct Movie: Decodable, Identifiable {
     }
     
     func getReleaseYear() -> String {
-        return String(releaseDate!.prefix(4))
+        guard let releaseDate = self.releaseDate else { return "N/A" }
+        return String(releaseDate.prefix(4))
     }
     func getVoteAverage() -> String {
         guard let voteAverage = self.voteAverage else { return "N/A" }
@@ -74,5 +95,9 @@ struct Movie: Decodable, Identifiable {
     func getVoteCount() -> String {
         guard let voteCount = self.voteCount else {return "N/A"}
         return "(\(voteCount))"
+    }
+    func formatVoteAverage() -> CGFloat {
+        guard let voteAverage = self.voteAverage else {return 0.0}
+        return voteAverage / 2
     }
 }

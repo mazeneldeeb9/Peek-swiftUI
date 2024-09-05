@@ -1,11 +1,10 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var searchText: String = ""
     @StateObject private var handler: Handler = .init()
-    
+    @State var searchText: String = ""
+
     var body: some View {
-        Group {
             if handler.isLoading {
                 LoadingView()
             } else if handler.hasError {
@@ -41,7 +40,7 @@ struct MainView: View {
             }
             
         }
-    }
+    
 }
 
 #Preview {
