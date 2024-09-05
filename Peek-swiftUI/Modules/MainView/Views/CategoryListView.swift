@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CategoryListView: View {
-    let category: MoviesResponse
+    let category: Movies
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(category.categoryTitle ?? "Unkown")
+                Text(category.title)
                     .bold()
                     .font(.title)
                     .foregroundStyle(.white)
@@ -21,7 +21,7 @@ struct CategoryListView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    ForEach(category.getMovies(), id: \.id) { movie in
+                    ForEach(category.results, id: \.id) { movie in
                         NavigationLink(destination: MoviesDetailsView(movieId: movie.id),
                                        label: {
                             MovieCard(movie: movie)

@@ -11,12 +11,12 @@ import Combine
 extension MainView {
     @MainActor
     class Handler: ObservableObject {
-        @Published var categories: [MoviesResponse] = []
+        @Published var categories: [Movies] = []
         @Published var isLoading: Bool = false
         @Published var hasError: Bool = false
         @Published var errorMessage: String?
-        private var moviesUsecase = MoviesUsecase()
-
+        var moviesUsecase = MoviesUsecase(repository: MoviesRepository())
+        private var cancellables = Set<AnyCancellable>()
         
         init() {
             loadCategories()
@@ -29,25 +29,27 @@ extension MainView {
         }
         
         func loadCategories() {
-                isLoading = true
-                moviesUsecase.fetchCategories(of: [(Category.popular, "Popular"), (Category.topRated, "Top Rated")]) { [weak self] result in
-                    DispatchQueue.main.async {
-                        self?.isLoading = false
-                        switch result {
-                        case .success(let responses):
-                            self?.categories = responses
-                        case .failure(let error):
-                            self?.handleError(error)
-                        }
+            isLoading = true
+            let categoriesToFetch: [(Category, String)] = [
+                (.nowPlaying, "Now Playing"),
+                (.popular, "Popular"),
+                (.topRated, "Top Rated")
+                ]
+            moviesUsecase.fetchCategories(of: categoriesToFetch)
+                .sink(receiveCompletion: { completionResult in
+                    switch completionResult {
+                    case .failure(let error):
+                        self.handleError(error)
+                    case .finished:
+                        break
                     }
-                }
-            }
-        
-
-     
+                }, receiveValue: { movies in
+                    self.categories = movies
+                    self.isLoading = false
+                })
+                .store(in: &cancellables)
+        }
     }
-    
-    
     
 }
 

@@ -9,33 +9,25 @@ import Foundation
 import Combine
 
 struct MoviesUsecase {
-    private let moviesAPI: MoviesAPI = MoviesAPI()
-    private var cancellables = Set<AnyCancellable>()
+    var repository: MoviesRepository
     
-    mutating func fetchCategories(of categoriesToFetch: [(Category, String)], completion: @escaping (Result<[MoviesResponse], Error>) -> Void) {
-        let publishers = categoriesToFetch.map { category, title in
-            moviesAPI.getMovies(for: category)
-                .map { response -> MoviesResponse in
-                    var updatedResponse = response
-                    updatedResponse.categoryTitle = title
-                    return updatedResponse
-                }
-                .eraseToAnyPublisher()
-        }
-        
-        Publishers.MergeMany(publishers)
-            .collect()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completionResult in
-                switch completionResult {
+    init(repository: MoviesRepository = MoviesRepository()) {
+        self.repository = repository
+    }
+    
+    func fetchCategories(of categoriesToFetch: [(Category, String)]) -> AnyPublisher<[Movies], Error> {
+        return Future { promise in
+            self.repository.fetchCategories(of: categoriesToFetch) { result in
+                switch result {
+                case .success(let movies):
+                    promise(.success(movies))
                 case .failure(let error):
-                    completion(.failure(error))
-                case .finished:
-                    break
+                    promise(.failure(error))
                 }
-            }, receiveValue: { responses in
-                completion(.success(responses))
-            })
-            .store(in: &cancellables)
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }
+
+

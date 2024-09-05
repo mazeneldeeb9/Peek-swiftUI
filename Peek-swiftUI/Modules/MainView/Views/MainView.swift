@@ -22,8 +22,8 @@ struct MainView: View {
                         )
                         
                         SearchTextField(searchText: $searchText)
-                        List(handler.categories, id: \.categoryTitle) { moviesResponse in
-                            CategoryListView(category: moviesResponse)
+                        List(handler.categories, id: \.title) { movies in
+                            CategoryListView(category: movies)
                                 .padding(.top, 16)
                                 .frame(maxWidth: .infinity)
                                 .listRowInsets(EdgeInsets())
