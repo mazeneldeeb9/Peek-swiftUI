@@ -15,10 +15,11 @@ extension MainView {
         @Published var isLoading: Bool = false
         @Published var hasError: Bool = false
         @Published var errorMessage: String?
-        var moviesUsecase = MoviesUsecase(repository: MoviesRepository())
+        let moviesUsecase: MoviesUsecase
         private var cancellables = Set<AnyCancellable>()
         
-        init() {
+        init(moviesUsecase: MoviesUsecase = MoviesUsecase()) {
+            self.moviesUsecase = moviesUsecase
             loadCategories()
         }
         

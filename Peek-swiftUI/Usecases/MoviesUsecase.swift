@@ -28,6 +28,12 @@ struct MoviesUsecase {
         }
         .eraseToAnyPublisher()
     }
+    
+    func fetchMovieDetails(of movieId: Int) -> AnyPublisher<Movie, NetworkError> {
+            return repository.fetchMovieDetails(of: movieId)
+                .map { $0.toMovie() }
+                .eraseToAnyPublisher()
+        }
 }
 
 

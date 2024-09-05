@@ -41,11 +41,16 @@ class MoviesRepository {
             })
             .store(in: &cancellables)
     }
-    
+    func fetchMovieDetails(of movieId: Int) -> AnyPublisher<MovieDTO, NetworkError> {
+        return moviesAPI.getMovieDetails(of: movieId)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
     private func mapToMovies(from dto: MoviesResponseDTO, categoryTitle: String) -> Movies {
         let movies = dto.results.map { movieDTO in
             movieDTO.toMovie()
         }
         return Movies(title: categoryTitle, results: movies)
     }
+    
 }
